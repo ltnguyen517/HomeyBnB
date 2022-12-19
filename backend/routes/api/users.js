@@ -8,6 +8,12 @@ const { handleValidationErrors } = require('../../utils/validation');
 const router = express.Router();
 
 const validateSignup = [
+    check('firstName')
+      .exists({ checkFalsy: true })
+      .withMessage('Must provide a first name'),
+    check('lastName')
+      .exists({ checkFalsy: true })
+      .withMessage('Must provide a last name'),
     check('email')
       .exists({ checkFalsy: true })
       .isEmail()
