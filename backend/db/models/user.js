@@ -54,7 +54,10 @@ module.exports = (sequelize, DataTypes) => {
         through: models.Booking,
         as: 'userIdBooking',
         foreignKey: 'userId'});
-      User.belongsToMany(models.Review, {foreignKey: 'userId'});
+      User.belongsToMany(models.User, {
+        through: models.Review,
+        as: 'userIdReview',
+        foreignKey: 'userId'});
     }
   };
 
