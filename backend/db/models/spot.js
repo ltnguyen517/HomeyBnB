@@ -19,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         through: models.SpotImage,
         as: 'SpotIdImage',
         foreignKey: 'spotId'});
-      Spot.belongsToMany(models.Booking, {foreignKey: 'spotId'});
+      Spot.belongsToMany(models.Spot, {
+        through: models.Booking,
+        as: 'SpotIdBooking',
+        foreignKey: 'spotId'});
     }
   }
   Spot.init({
