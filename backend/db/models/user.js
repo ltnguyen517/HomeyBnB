@@ -56,7 +56,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         otherKey: 'spotId'
       });
-      User.belongsToMany(models.Spot, {
+      User.hasMany(models.Spot, {
         foreignKey: 'ownerId'});
     }
   };
