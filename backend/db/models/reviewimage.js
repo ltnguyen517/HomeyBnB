@@ -17,11 +17,13 @@ module.exports = (sequelize, DataTypes) => {
   ReviewImage.init({
     reviewId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      onDelete: 'CASCADE'
     },
     url: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     }
   }, {
     sequelize,
