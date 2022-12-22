@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { setTokenCookie, restoreUser, requireAuth } = require("../../utils/auth");
 const { User, Spot, SpotImage, Review, ReviewImage, Booking, Sequelize } = require("../../db/models");
-const { check } = require("express-validator");
+const { check, body } = require("express-validator");
 const { handleValidationErrors } = require("../../utils/validation");
 const { validateLogin } = require("./session");
 const sequelize = require("sequelize");
@@ -185,9 +185,10 @@ router.post('/', requireAuth, async (req, res) => {
 //Add an Image to a Spot based on the Spot's id
 router.post('/:spotId/images', requireAuth, async (req, res) => {
     const { user } = req;
+    const { spotId } = req.params;
     const { url, preview } = req.body;
 
-    const spot = await Spot.findByPk(req.params.spotId);
+    const spot = await Spot.findByPk(spotId);
     if(spot && parseInt(user.id) === parseInt(spot.ownerId)){
         const newImg = await SpotImage.create({
             spotId,
@@ -208,7 +209,55 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
     }
 });
 
+//Edit a Spot
+router.put('/:spotId', requireAuth, async (req, res) => {
+    const { user } = req;
+    const { spotId } = req.params;
+    const { address, city, state, country, lat, lng, name, description, price } = req.body;
 
+    const spot = await Spot.findByPk(spotId);
+
+    const bodyErr = {
+        "message": "Validation Error",
+        "statusCode": 400,
+        "errors": {}
+    };
+    if(!address) bodyErr.errors.address = "Street address is required";
+    if(!city) bodyErr.errors.city = "City is required";
+    if(!state) bodyErr.errors.state = "State is required";
+    if(!country) bodyErr.errors.country = "Country is required";
+    if(!lat) bodyErr.errors.lat = "Latitude is not valid";
+    if(!lng) bodyErr.errors.lng = "Longitude is not valid";
+    if(!name) bodyErr.errors.name = "Name must be less than 50 characters";
+    if(!description) bodyErr.errors.description = "Description is required";
+    if(!price) bodyErr.errors.price = "Price per day is required";
+
+    if(!address || !city || !state || !country || !lat || !lng || (name.length > 50) || !description || !price){
+        res.status(400);
+        return res.json(bodyErr);
+    }
+
+    if(spot && spot.ownerId === user.id) {
+        await spot.upddate({
+            address,
+            city,
+            state,
+            country,
+            lat,
+            lng,
+            name,
+            description,
+            price
+        })
+        return res.json(spot)
+    } else {
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        });
+    }
+});
 
 
 
