@@ -180,7 +180,33 @@ router.post('/', requireAuth, async (req, res) => {
     });
     res.status(201);
     return res.json(newSpot);
-})
+});
+
+//Add an Image to a Spot based on the Spot's id
+router.post('/:spotId/images', requireAuth, async (req, res) => {
+    const { user } = req;
+    const { url, preview } = req.body;
+
+    const spot = await Spot.findByPk(req.params.spotId);
+    if(spot && parseInt(user.id) === parseInt(spot.ownerId)){
+        const newImg = await SpotImage.create({
+            spotId,
+            url,
+            preview
+        });
+        return res.json({
+            "id": newImg.id,
+            "url": newImg.url,
+            "preview": newImg.preview
+        });
+    } else {
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        });
+    }
+});
 
 
 
