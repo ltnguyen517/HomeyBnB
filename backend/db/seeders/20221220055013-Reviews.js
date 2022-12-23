@@ -14,19 +14,19 @@ module.exports = {
       {
         spotId: 1,
         userId: 1,
-        review: 'Place was pristine clean with lots of sunlight',
+        review: 'Place was pristine clean with lots of sunlight.',
         stars: 4
       },
       {
         spotId: 2,
         userId: 2,
-        review: 'Real spacious and landlord accomodated us with loads of snacks',
+        review: 'Real spacious and landlord accomodated us with loads of snacks.',
         stars: 5
       },
       {
         spotId: 3,
         userId: 3,
-        review: 'Has a awesome infinity pool in the backyard',
+        review: 'Has a awesome infinity pool in the backyard.',
         stars: 5
       }
     ], {});
