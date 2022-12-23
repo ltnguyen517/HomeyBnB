@@ -99,6 +99,43 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
     });
 });
 
+//Edit a review
+router.put('/:reviewId', requireAuth, async (req, res) => {
+    const { user } = req;
+    const { review, stars } = req.body;
+    const { reviewId } = req.params;
 
+    const updateReview = await Review.findByPk(reviewId);
+
+    if(!updateReview){
+        res.status(404);
+        return res.json({
+            "message": "Review couldn't be found",
+            "statusCode": 404
+        })
+    };
+    if(user.id !== updateReview.userId) throw new Error("Review must belong to the current user");
+
+    const bodyError = {
+        "message": "Validation error",
+        "statusCode": 400,
+        "errors": {}
+    };
+    if(!review) bodyError.errors.review = "Review text is required";
+    if(!(stars >= 1 && stars <= 5)) bodyError.errors.stars = "Stars must be an integer from 1 to 5";
+    if(!review || (!(stars >= 1 && stars <= 5))){
+        res.status(400);
+        return res.json(bodyError);
+    };
+
+    const putReview = await updateReview.update({
+        review,
+        stars,
+    });
+    res.status(200);
+    return res.json(putReview);
+});
+
+//Delete a review
 
 module.exports = router;
