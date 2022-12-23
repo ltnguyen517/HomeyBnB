@@ -332,7 +332,7 @@ router.get('/:spotId/reviews', async (req, res) => {
 //Create a review for a spot based on the spot's id
 router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     const id = req.user.id;
-    const {spotId} = req.params;
+    const { spotId } = req.params;
     const { review, stars } = req.body;
 
     const spot = await Spot.findByPk(spotId);
@@ -380,5 +380,6 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     res.status(201);
     return res.json(brandNewReview);
 });
+
 
 module.exports = router;
