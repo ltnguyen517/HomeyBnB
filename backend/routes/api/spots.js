@@ -302,7 +302,7 @@ router.get('/:spotId/reviews', async (req, res) => {
     if(spot){
         const reviews = await Review.findAll({
             where: {
-                spotId: spots.id
+                spotId: spot.id
             },
             attributes: ['id', 'userId', 'spotId', 'review', 'stars', 'createdAt', 'updatedAt'],
             include: [
@@ -327,6 +327,58 @@ router.get('/:spotId/reviews', async (req, res) => {
             "statusCode": 404
         })
     }
+});
+
+//Create a review for a spot based on the spot's id
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+    const id = req.user.id;
+    const {spotId} = req.params;
+    const { review, stars } = req.body;
+
+    const spot = await Spot.findByPk(spotId);
+
+    if(!spot){
+        res.status(404);
+        return res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        });
+    };
+
+    const existingReview = await Review.findOne({
+        where: {
+            userId: id,
+            spotId: spotId
+        }
+    });
+    if(existingReview){
+        res.status(403);
+        return res.json({
+            "message": "User already has a review for this spot",
+            "statusCode": 403
+        })
+    };
+
+    const bodyValErr = {
+        "message": "Validation error",
+        "statusCode": 400,
+        "errors": {}
+    };
+    if(!review) bodyValErr.errors.review = "Review text is required";
+    if(stars < 1 || stars > 5) bodyValErr.errors.stars = "Stars must be an integer from 1 to 5";
+    if(!review || (stars < 1 || stars > 5)){
+        res.status(400);
+        return res.json(bodyValErr)
+    };
+
+    const brandNewReview = await Review.create({
+        userId: id,
+        spotId: spot.id,
+        review,
+        stars
+    });
+    res.status(201);
+    return res.json(brandNewReview);
 });
 
 module.exports = router;
