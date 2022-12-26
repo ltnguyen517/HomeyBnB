@@ -438,8 +438,8 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     const { startDate, endDate } = req.body;
     const { spotId } = req.params;
-    const start = new Date(startDate);
-    const end = new Date(endDate);
+    const existingStart = new Date(startDate);
+    const existingEnd = new Date(endDate);
 
     const spot = await Spot.findByPk(spotId);
 
@@ -452,7 +452,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     };
     if(req.user.id === spot.ownerId) throw new Error("Spot must NOT belong to the current user")
 
-    if(end <= start){
+    if(existingEnd <= existingStart){
         res.status(400);
         return res.json({
             "message": "Validation error",
@@ -473,7 +473,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
         const newStart = new Date(booking.startDate);
         const newEnd = new Date(booking.endDate);
 
-        if(!(start.getTime() >= newEnd.getTime() || end.getTime() <= newStart.getTime())){
+        if(existingEnd.getTime() >= newStart.getTime() && existingStart.getTime() <= newEnd.getTime()){
             res.status(403);
             return res.json({
                 "message": "Sorry, this spot is already booked for the specified dates",
