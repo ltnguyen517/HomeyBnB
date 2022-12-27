@@ -221,7 +221,7 @@ router.post('/', requireAuth, async (req, res) => {
         "statusCode": 400,
         "errors": {}
     };
-    
+
     if(!address) bodyValError.errors.address = "Street address is required";
     if(!city) bodyValError.errors.city = "City is required";
     if(!state) bodyValError.errors.state = "State is required";
@@ -274,6 +274,8 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
             "url": newImg.url,
             "preview": newImg.preview
         });
+    } else if(spot && (parseInt(user.id) !== parseInt(spot.ownerId))) {
+        throw new Error("Spot must belong to the current user")
     } else {
         res.status(404);
         return res.json({
