@@ -293,41 +293,25 @@ router.put('/:spotId', requireAuth, async (req, res) => {
 
     const spot = await Spot.findByPk(spotId);
 
-    // const bodyErr = {
-    //     "message": "Validation Error",
-    //     "statusCode": 400,
-    //     "errors": {}
-    // };
-    // if(!address) bodyErr.errors.address = "Street address is required";
-    // if(!city) bodyErr.errors.city = "City is required";
-    // if(!state) bodyErr.errors.state = "State is required";
-    // if(!country) bodyErr.errors.country = "Country is required";
-    // if(!lat) bodyErr.errors.lat = "Latitude is not valid";
-    // if(!lng) bodyErr.errors.lng = "Longitude is not valid";
-    // if(!name) bodyErr.errors.name = "Name must be less than 50 characters";
-    // if(!description) bodyErr.errors.description = "Description is required";
-    // if(!price) bodyErr.errors.price = "Price per day is required";
+    const bodyErr = {
+        "message": "Validation Error",
+        "statusCode": 400,
+        "errors": {}
+    };
+    if(!address) bodyErr.errors.address = "Street address is required";
+    if(!city) bodyErr.errors.city = "City is required";
+    if(!state) bodyErr.errors.state = "State is required";
+    if(!country) bodyErr.errors.country = "Country is required";
+    if(!lat) bodyErr.errors.lat = "Latitude is not valid";
+    if(!lng) bodyErr.errors.lng = "Longitude is not valid";
+    if(name.length > 50) bodyErr.errors.name = "Name must be less than 50 characters";
+    if(!description) bodyErr.errors.description = "Description is required";
+    if(!price) bodyErr.errors.price = "Price per day is required";
 
     if(!address || !city || !state || !country || !lat || !lng || (name.length > 50) || !description || !price){
         res.status(400);
-        return res.json({
-            "message": "Validation Error",
-            "statusCode": 400,
-            "errors": {
-                "address": "Street address is required",
-                "city": "City is required",
-                "state": "State is required",
-                "country": "Country is required",
-                "lat": "Latitude is not valid",
-                "lng": "Longitude is not valid",
-                "name": "Name must be less than 50 characters",
-                "description": "Description is required",
-                "price": "Price per day is required"
-            }
-        // return res.json(bodyErr);
-        })
+        return res.json(bodyErr);
     };
-
 
     if(spot && (spot.ownerId === user.id)) {
         await spot.update({
@@ -342,6 +326,8 @@ router.put('/:spotId', requireAuth, async (req, res) => {
             price
         })
         return res.json(spot)
+    } else if(spot && (spot.ownerId !== user.id)){
+        throw new Error("Spot must belong to the current user")
     } else {
         res.status(404);
         return res.json({
