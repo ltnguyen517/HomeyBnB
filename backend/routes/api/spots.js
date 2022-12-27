@@ -216,22 +216,26 @@ router.get('/:spotId', async (req, res) => {
 router.post('/', requireAuth, async (req, res) => {
     const { address, city, state, country, lat, lng, name, description, price, createdAt, updatedAt } = req.body;
 
+    const bodyValError = {
+        "message": "Validation Error",
+        "statusCode": 400,
+        "errors": {}
+    };
+    
+    if(!address) bodyValError.errors.address = "Street address is required";
+    if(!city) bodyValError.errors.city = "City is required";
+    if(!state) bodyValError.errors.state = "State is required";
+    if(!country) bodyValError.errors.country = "Country is required";
+    if(!lat) bodyValError.errors.lat = "Latitude is not valid";
+    if(!lng) bodyValError.errors.lng = "Longitude is not vali";
+    if(name.length > 50) bodyValError.errors.name = "Name must be less than 50 characters";
+    if(!description) bodyValError.errors.description = "Description is required";
+    if(!price) bodyValError.errors.price = "Price per day is required";
+
+
     if(!address || !city || !state || !country || !lat || !lng || (name.length > 50) || !description || !price){
-        return res.status(400).json({
-            "message": "Validation Error",
-            "statusCode": 400,
-            "errors": {
-                "address": "Street address is required",
-                "city": "City is required",
-                "state": "State is required",
-                "country": "Country is required",
-                "lat": "Latitude is not valid",
-                "lng": "Longitude is not valid",
-                "name": "Name must be less than 50 characters",
-                "description": "Description is required",
-                "price": "Price per day is required"
-            }
-        })
+        res.status(400);
+        return res.json(bodyValError);
     }
 
     const newSpot = await Spot.create({
