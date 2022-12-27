@@ -11,8 +11,73 @@ const { Op } = require("sequelize");
 
 //Get all Spots
 router.get('/', async (req, res) => {
-    const spots = await Spot.findAll({
+    let { page, size, minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
 
+    const queryValErr = {
+        "message": "Validation Error",
+        "statusCode": 400,
+        "errors": {}
+    }
+
+    if(minLat){
+        minLat = Number(minLat);
+        if(isNaN(minLat)){
+            res.status(400);
+            return queryValErr.errors.minLat = "Minimum latitude is invalid"
+        }
+    };
+    if(maxLat){
+        maxLat = Number(maxLat);
+        if(isNaN(maxLat)){
+            res.status(400);
+            return queryValErr.errors.maxLat = "Maximum latitude is invalid"
+        }
+    };
+    if(minLng){
+        minLng = Number(minLng);
+        if(isNaN(minLng)){
+            res.status(400);
+            return queryValErr.errors.minLng = "Minimum longitude is invalid"
+        }
+    };
+    if(maxLng){
+        maxLng = Number(maxLng);
+        if(isNaN(maxLng)){
+            res.status(400);
+            return queryValErr.errors.maxLng = "Maximum longitude is invalid"
+        }
+    };
+    if(minPrice){
+        minPrice = Number(minPrice);
+        if(isNaN(minPrice) || minPrice < 0){
+            res.status(400);
+            return queryValErr.errors.minPrice = "Minimum price must be greater than or equal to 0"
+        };
+    };
+    if(maxPrice){
+        maxPrice = Number(maxPrice);
+        if(isNaN(maxPrice) || maxPrice < 0){
+            res.status(400);
+            return queryValErr.errors.maxPrice = "Maximum price must be greater than or equal to 0"
+        };
+    };
+    if(page < 1){
+        res.status(400);
+        return queryValErr.errors.page = "Page must be greater than or equal to 1"
+    };
+    if(size < 1){
+        res.status(400);
+        return queryValErr.errors.size = "Size must be greater than or equal to 1"
+    };
+
+    page = parseInt(page);
+    size = parseInt(size);
+    if(!page) page = 1;
+    if(!size) size = 20;
+    if(page > 10) page = 10;
+    if(size > 20) size = 20;
+
+    const spots = await Spot.findAll({
         include: [
             {
                 model: Review
@@ -20,7 +85,9 @@ router.get('/', async (req, res) => {
             {
                 model: SpotImage
             }
-        ]
+        ],
+        limit: size,
+        offset: size * (page - 1)
     });
 
     const spotArr = [];
@@ -46,7 +113,9 @@ router.get('/', async (req, res) => {
         })
     });
     return res.json({
-        "Spots": spotArr
+        "Spots": spotArr,
+        page,
+        size
     })
 });
 
