@@ -56,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         otherKey: 'spotId'
       });
+      User.hasMany(models.Review, {foreignKey: 'userId'})
       User.hasMany(models.Spot, {
         foreignKey: 'ownerId'});
     }
@@ -73,6 +74,7 @@ User.init(
       },
       username: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false,
         validate: {
           len: [4, 30],
@@ -86,6 +88,7 @@ User.init(
       email: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
         validate: {
           len: [3, 256],
           isEmail: true

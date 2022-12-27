@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'spotId',
         otherKey: 'userId'
       });
+      Spot.hasMany(models.Review, {foreignKey: 'spotId'});
     }
   }
   Spot.init({
@@ -34,7 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     address: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     city: {
       type: DataTypes.STRING,
