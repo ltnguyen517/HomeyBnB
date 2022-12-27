@@ -16,7 +16,7 @@ const validateSignup = [
     check('email')
       .exists({ checkFalsy: true })
       .isEmail()
-      .withMessage('Please provide a valid email.'),
+      .withMessage('Invalid email'),
     check('username')
       .exists({ checkFalsy: true })
       .isLength({ min: 4 })
@@ -84,10 +84,15 @@ router.post(
 
       const user = await User.signup({ firstName, lastName, email, username, password });
 
-      await setTokenCookie(res, user);
+      const token = await setTokenCookie(res, user);
 
       return res.json({
-        user: user
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+          username: user.username,
+          token
       });
     }
 );
