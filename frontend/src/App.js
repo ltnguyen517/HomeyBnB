@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import HomeSpotsPage from "./components/HomeAllSpots";
+import SpotForm from "./components/SpotForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +20,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <HomeSpotsPage />
+          </Route>
+          <Route exact path="/spots/new">
+            <SpotForm />
           </Route>
         </Switch>
       )}

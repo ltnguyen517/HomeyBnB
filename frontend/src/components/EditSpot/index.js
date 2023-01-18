@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createNovelSpot } from "../../store/spots";
-import { Redirect } from "react-router-dom";
-import './SpotForm.css'
+import { useHistory } from "react-router-dom";
+import { editASpot } from "../../store/spots";
+import './EditSpot.css'
 
-const SpotForm = () => {
+const SpotEditing = () => {
+    const history = useHistory();
     const dispatch = useDispatch();
-    const [ address, setAddress ] = useState("");
-    const [ city, setCity ] = useState("");
-    const [ state, setState ] = useState("");
-    const [ country, setCountry ] = useState("");
-    const [ name, setName ] = useState("");
-    const [ description, setDescription ] = useState("");
-    const [ price, setPrice ] = useState(0);
+    const spotUpdate = useSelector((state) => state.spots.singleSpot)
+    const currentUser = useSelector((state) => state.session.user);
+    const [ address, setAddress ] = useState(spotUpdate.address);
+    const [ city, setCity ] = useState(spotUpdate.city);
+    const [ state, setState ] = useState(spotUpdate.state);
+    const [ country, setCountry ] = useState(spotUpdate.country);
+    const [ name, setName ] = useState(spotUpdate.name);
+    const [ description, setDescription ] = useState(spotUpdate.description);
+    const [ price, setPrice ] = useState(spotUpdate.price);
     const [ previewImage, setPreviewImage ] = useState("");
     const [ validationErrors, setValidationErrors ] = useState([]);
-    const [ uponCompletion, setUponCompletion ] = useState(false);
-
-
-    const currentUser = useSelector(state => state.session.user);
 
     useEffect(() => {
         const errors = [];
 
-        if(!currentUser) errors.push("Must be logged in for you to create a spot");
+        if(!currentUser) errors.push("Must be logged in for you to edit your spot");
         if(address.length === 0) errors.push("Please enter a valid street address");
         if(city.length === 0) errors.push("Please enter a valid city");
         if(state.length === 0) errors.push("Please enter a valid state");
@@ -40,7 +39,7 @@ const SpotForm = () => {
         e.preventDefault();
         setValidationErrors([]);
 
-        const brandNewSpot = {
+        const infoWithUpdates = {
             address,
             city,
             state,
@@ -49,29 +48,25 @@ const SpotForm = () => {
             description,
             price,
             lat: 120.25,
-            lng: 75.89
-        }
-        const brandNewSpotImage = {
-            url: previewImage,
-            preview: true
+            lng: 75.89,
+            previewImage
         }
 
-        return dispatch(createNovelSpot(brandNewSpot, brandNewSpotImage))
-            .then(async(res) => {setUponCompletion(true)})
+        return dispatch(editASpot(updateSpot, id))
+            .then(async(res) => {history.push(`/spots/${id}`)})
             .catch(async(res) => {
-                const newSpot = await res.json();
-                if(newSpot && newSpot.errors) setValidationErrors(newSpot.errors)
+                const updatedSpot = await res.json();
+                if(updatedSpot && updatedSpot.errors) setValidationErrors(updatedSpot.errors)
             })
     };
-    if(uponCompletion) return <Redirect to="/" />;
 
     return (
         <>
-         <div className="complete-layout">
-            <div className="spotcreation-form">
-                <h1 className="spotform-header">Let's connect your home to HomeyBnb!</h1>
-                <form className="spot-form" onSubmit={handleSubmit}>
-                    <ul className="spot-form-errors">
+         <div className="complete-edit-layout">
+            <div className="spotedit-webpage">
+                <h1 className="spotedit-header">Let's edit your spot!</h1>
+                <form className="spotedit-form" onSubmit={handleSubmit}>
+                    <ul className="spot-edit-errors">
                         {validationErrors.map((error) => (
                             <li key={error}>{error}</li>
                         ))}
@@ -148,11 +143,11 @@ const SpotForm = () => {
                             required
                         />
                     </label>
-                    <button className="spot-creation-button" type="submit">Create New Spot</button>
+                    <button className="spot-edit-button" type="submit">Update Spot Now</button>
                 </form>
             </div>
          </div>
         </>
     );
 };
-export default SpotForm;
+export default SpotEditing;
