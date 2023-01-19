@@ -4,7 +4,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { getSpot, editASpot, deleteASpot } from "../../store/spots";
 import './ASpotDetailPage.css'
 
-const singleSpotDetails = () => {
+const SingleSpotDetails = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { spotId } = useParams();
@@ -81,7 +81,7 @@ const singleSpotDetails = () => {
             <div className="images-container">
                 {imageOfSpot.map((spotImage) => (
                     <div key={spotImage.id}>
-                        <img className="the-spot-image" src={spotImage.url} alt='Spot Image'></img>
+                        <img className="the-spot-image" src={spotImage.url} alt='Spot Img'></img>
                     </div>
                 ))}
             </div>
@@ -134,4 +134,4 @@ const singleSpotDetails = () => {
         </div>
     )
 }
-export default singleSpotDetails;
+export default SingleSpotDetails;
