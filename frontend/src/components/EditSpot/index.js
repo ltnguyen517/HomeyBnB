@@ -39,7 +39,7 @@ const SpotEditing = () => {
         e.preventDefault();
         setValidationErrors([]);
 
-        const infoWithUpdates = {
+        const updateSpot = {
             address,
             city,
             state,
