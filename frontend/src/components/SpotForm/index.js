@@ -49,14 +49,11 @@ const SpotForm = () => {
             description,
             price,
             lat: 120.25,
-            lng: 75.89
-        }
-        const brandNewSpotImage = {
-            url: previewImage,
-            preview: true
+            lng: 75.89,
+            previewImage: "https://a0.muscache.com/im/pictures/miso/Hosting-673806390132966717/original/b4e61614-2b6d-48bd-8a85-9f12a803a5e6.jpeg?im_w=1200"
         }
 
-        return dispatch(createNovelSpot(brandNewSpot, brandNewSpotImage))
+        return dispatch(createNovelSpot(brandNewSpot))
             .then(async(res) => {setUponCompletion(true)})
             .catch(async(res) => {
                 const newSpot = await res.json();
