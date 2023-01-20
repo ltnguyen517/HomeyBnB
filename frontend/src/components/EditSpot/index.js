@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { editASpot } from "../../store/spots";
 import './EditSpot.css'
 
 const SpotEditing = () => {
     const history = useHistory();
     const dispatch = useDispatch();
-    const spotUpdate = useSelector((state) => state.spots.singleSpot)
+    const spotUpdate = useSelector((state) => state.spots.singleSpot);
     const currentUser = useSelector((state) => state.session.user);
+    let { spotId } = useParams();
+    spotId = Number(spotId);
     const [ address, setAddress ] = useState(spotUpdate.address);
     const [ city, setCity ] = useState(spotUpdate.city);
     const [ state, setState ] = useState(spotUpdate.state);
@@ -52,8 +54,8 @@ const SpotEditing = () => {
             previewImage
         }
 
-        return dispatch(editASpot(updateSpot, id))
-            .then(async(res) => {history.push(`/spots/${id}`)})
+        return dispatch(editASpot(spotId, updateSpot))
+            .then(async(res) => {history.push(`/spots/${spotId}`)})
             .catch(async(res) => {
                 const updatedSpot = await res.json();
                 if(updatedSpot && updatedSpot.errors) setValidationErrors(updatedSpot.errors)

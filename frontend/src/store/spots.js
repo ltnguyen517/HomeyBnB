@@ -50,7 +50,6 @@ export const getSpot = (spotId) => async (dispatch) => {
         const spot = await response.json();
         dispatch(getASpot(spot))
     }
-    return response
 };
 
 export const createNovelSpot = (newSpot) => async (dispatch) => {
@@ -74,8 +73,8 @@ export const createNovelSpot = (newSpot) => async (dispatch) => {
     }
 };
 
-export const editASpot = (updateSpot, id) => async(dispatch) => {
-    const response = await csrfFetch(`/api/spots/${id}`, {
+export const editASpot = (spotId, updateSpot) => async(dispatch) => {
+    const response = await csrfFetch(`/api/spots/${spotId}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(updateSpot)
