@@ -1,0 +1,51 @@
+.complete-edit-layout {
+  display: flex;
+  justify-content: center;
+}
+.spotedit-webpage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 590px;
+  height: auto;
+  border: 0.55px solid black;
+  border-radius: 1.1rem;
+  margin-top: 61px;
+}
+.spotedit-header {
+  margin-top: 51px;
+}
+.spotedit-form {
+  margin-bottom: 61px;
+}
+.data {
+  box-sizing: border-box;
+  width: 401px;
+  display: flex;
+  padding: 10.5px;
+  margin-top: 11px;
+  border-radius: 8.5px;
+  border-width: 0.1px;
+  border-color: rgba(131, 127, 127, 0.349);
+}
+.spot-edit-button {
+  box-sizing: border-box;
+  width: 401px;
+  display: flex;
+  padding: 10.5px;
+  margin-top: 11px;
+  color: white;
+  justify-content: center;
+  border-radius: 10.5px;
+  border-width: 0.1px;
+  border-color: rgba(128, 128, 128, 0);
+  background-image: radial-gradient(
+    circle at center center,
+    rgb(255, 56, 92) 0%,
+    rgb(230, 30, 77) 27.5%,
+    rgb(227, 28, 95) 40%,
+    rgb(215, 4, 102) 57.5%,
+    rgb(189, 30, 89) 75%,
+    rgb(189, 30, 89) 100%
+  );
+}

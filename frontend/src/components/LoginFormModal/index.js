@@ -26,33 +26,49 @@ function LoginFormModal() {
 
   return (
     <>
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <label>
-          Username or Email
-          <input
-            type="text"
-            value={credential}
-            onChange={(e) => setCredential(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Log In</button>
-      </form>
+      <div className="login-modal">
+        <h1 className="login-text">Log In</h1>
+        <form className="login-modal-container" onSubmit={handleSubmit}>
+          <ul className="errors-container">
+            {errors.map((error, idx) => (
+              <li className="error-list" key={idx}>{error}</li>
+            ))}
+          </ul>
+          <label>
+            Username or Email
+            <input
+              className="data"
+              type="text"
+              placeholder="Username or Email"
+              value={credential}
+              onChange={(e) => setCredential(e.target.value)}
+              required
+            />
+          </label>
+          <label>
+            Password
+            <input
+              className="data"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </label>
+          <button className="login-button" type="submit">Log In</button>
+          <button
+            className="login-button"
+            type="submit"
+            onClick={() => {
+              setCredential('Demo-lition');
+              setPassword('password');
+            }}
+          >
+            Demo User
+          </button>
+        </form>
+      </div>
     </>
   );
 }

@@ -4,20 +4,26 @@ const LOAD_REVIEWS = 'reviews/LOAD_REVIEWS';
 const CREATE_REVIEW = 'reviews/CREATE_REVIEW';
 const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
-const getReviews = (reviews) => ({
-    type: LOAD_REVIEWS,
-    reviews
-});
+const getReviews = (reviews) => {
+    return {
+        type: LOAD_REVIEWS,
+        reviews,
+    };
+};
 
-const createReview = (review) => ({
-    type: CREATE_REVIEW,
-    review
-});
+const createReview = (review) => {
+    return {
+        type: CREATE_REVIEW,
+        review,
+    };
+};
 
-const deleteReview = (review) => ({
-    type: DELETE_REVIEW,
-    review
-});
+const deleteReview = (reviewId) => {
+    return {
+        type: DELETE_REVIEW,
+        reviewId,
+    }
+};
 
 export const getAllReviews = (spotId) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
@@ -28,11 +34,11 @@ export const getAllReviews = (spotId) => async (dispatch) => {
     }
 };
 
-export const createAReview = (spotId, review) => async(dispatch) => {
+export const createAReview = (spotId, review) => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method: "POST",
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(review)
+        body: JSON.stringify(review),
     });
     if(response.ok){
         const brandNewReview = await response.json();
@@ -52,14 +58,14 @@ export const deleteAReview = (reviewId) => async (dispatch) => {
     }
 };
 
-const initialState = { spotReviews: {} };
+const initialState = { spotReviews: {}, personReviews: {} };
 
 const reviewsReducer = (state = initialState, action) => {
     let newState;
 
     switch(action.type){
         case LOAD_REVIEWS: {
-            newState = { spotReviews: {} };
+            newState = { spotReviews: {}, personReviews: {} };
             action.reviews.Reviews.forEach((review) => {
                 newState.spotReviews[review.id] = review;
             });
@@ -67,16 +73,22 @@ const reviewsReducer = (state = initialState, action) => {
         }
         case CREATE_REVIEW: {
             newState = {...state};
-            newState.spotReviews[action.review.id] = action.review;
+            newState[action.review.id] = action.review;
             return newState;
         }
         case DELETE_REVIEW: {
-            newState = {...state};
+            newState = {
+                ...state,
+                spotReviews: {...state.spotReviews},
+                personReviews: {...state.personReviews},
+            };
             delete newState.spotReviews[action.reviewId.id];
+            delete newState.personReviews[action.reviewId.id];
             return newState;
         }
-        default:
+        default: {
             return state;
+        }
     }
 };
 export default reviewsReducer;

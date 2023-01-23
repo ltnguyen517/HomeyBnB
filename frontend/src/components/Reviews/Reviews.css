@@ -1,0 +1,81 @@
+.all-reviews-container {
+    margin-top: 29px;
+    margin-left: 300.5px;
+    width: 100%;
+    margin-bottom: 29px;
+}
+.review-box-data {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 21px;
+    font-size: 20px;
+    box-sizing: border-box;
+    width: 100%;
+    font-weight: bold;
+}
+.box-left-data {
+    display: flex;
+}
+.review-star {
+    margin-right: 9px;
+}
+.little-dot {
+    margin-right: 9px;
+}
+.number-reviews2 {
+    margin-right: 9px;
+}
+.create-review {
+    color: white;
+    height: 26px;
+    width: 101px;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 10.5px;
+    border-width: 0.3px;
+    border-color: rgba(128, 128, 128, 0);
+    background-image: radial-gradient(
+      circle at center center,
+      rgb(255, 56, 92) 0%,
+      rgb(230, 30, 77) 27.5%,
+      rgb(227, 28, 95) 40%,
+      rgb(215, 4, 102) 57.5%,
+      rgb(189, 30, 89) 75%,
+      rgb(189, 30, 89) 100%
+    );
+}
+.review-container {
+    display: flex;
+    flex-direction: column;
+    width: 51%;
+}
+.person-delete {
+    display: flex;
+    width: 57%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 11px;
+    margin-top: 11px;
+}
+.person {
+    font-weight: bold;
+}
+.delete-button {
+    color: white;
+    height: 26px;
+    width: 101px;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 11px;
+    border-width: 0.25px;
+    border-color: rgba(128, 128, 128, 0);
+    background-image: radial-gradient(
+      circle at center center,
+      rgb(255, 56, 92) 0%,
+      rgb(230, 30, 77) 27.5%,
+      rgb(227, 28, 95) 40%,
+      rgb(215, 4, 102) 57.5%,
+      rgb(189, 30, 89) 75%,
+      rgb(189, 30, 89) 100%
+    );
+}

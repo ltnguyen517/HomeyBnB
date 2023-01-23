@@ -31,16 +31,19 @@ function SignupFormModal() {
 
   return (
     <>
-      <h1>Sign Up</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+    <div className="signup-modal">
+      <h1 className="signup-title">Sign Up</h1>
+      <form className="signup-box" onSubmit={handleSubmit}>
+        <ul className="errors-container">
+          {errors.map((error, idx) => <li className="error-list" key={idx}>{error}</li>)}
         </ul>
         <label>
           Email
           <input
             type="text"
+            className="data"
             value={email}
+            placeholder="Email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
@@ -49,7 +52,9 @@ function SignupFormModal() {
           Username
           <input
             type="text"
+            className="data"
             value={username}
+            placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
             required
           />
@@ -58,7 +63,9 @@ function SignupFormModal() {
           First Name
           <input
             type="text"
+            className="data"
             value={firstName}
+            placeholder="First Name"
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
@@ -67,7 +74,9 @@ function SignupFormModal() {
           Last Name
           <input
             type="text"
+            className="data"
             value={lastName}
+            placeholder="Last Name"
             onChange={(e) => setLastName(e.target.value)}
             required
           />
@@ -76,7 +85,9 @@ function SignupFormModal() {
           Password
           <input
             type="password"
+            className="data"
             value={password}
+            placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
@@ -85,13 +96,16 @@ function SignupFormModal() {
           Confirm Password
           <input
             type="password"
+            className="data"
+            placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Sign Up</button>
+        <button className="modal-button" type="submit">Sign Up</button>
       </form>
+    </div>
     </>
   );
 }

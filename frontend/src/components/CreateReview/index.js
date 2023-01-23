@@ -1,37 +1,57 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { createAReview } from "../../store/reviews";
 import './CreateReviewForm.css';
 
 const ReviewForm = () => {
     const dispatch = useDispatch();
-    const history = useHistory();
-    const { spotId } = useParams();
+    let { spotId } = useParams();
+    spotId = Number(spotId);
     const currentUser = useSelector((state) => state.session.user);
     const [ stars, setStars ] = useState("");
     const [ review, setReview ] = useState("");
     const [ errors, setErrors ] = useState([]);
+    const [ submit, setSubmit ] = useState(false);
 
-    useEffect(() => {
+    if(submit) return <Redirect to={`/spots/${spotId}`} />
+
+    // useEffect(() => {
+    //     const errors = [];
+
+    //     if(!currentUser) errors.push('Must be logged in to create a review');
+
+    //     if(review.length < 1) errors.push('Please type a review with greater than 1 character');
+    //     if(stars < 1 || stars > 5 || !Number(stars)) errors.push('Please enter a star rating that is between 1 and 5');
+
+    //     setErrors(errors);
+    // }, [currentUser, review, stars]);
+
+    const validations = () => {
         const errors = [];
         if(!currentUser) errors.push('Must be logged in to create a review');
-
         if(review.length < 1) errors.push('Please type a review with greater than 1 character');
         if(stars < 1 || stars > 5 || !Number(stars)) errors.push('Please enter a star rating that is between 1 and 5');
-
-        setErrors(errors);
-    }, [currentUser, review, stars]);
+        return errors;
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newReview = {
+        let newReview = {
             review,
             stars
         };
-        let aNewReview = await dispatch(createAReview(newReview, spotId));
-        if(aNewReview) history.push(`/spots/${spotId}`);
+
+        const valErrs = validations();
+        if(valErrs.length){
+            setErrors(valErrs);
+            return;
+        }
+
+        return dispatch(createAReview(spotId, newReview)).then(async (res) => {
+            setSubmit(true);
+        });
     };
 
     return (
@@ -45,18 +65,22 @@ const ReviewForm = () => {
                 <label className="review-form-data-placement">
                     <input
                         type="text"
+                        className="data"
                         value={review}
                         placeholder='Review'
                         onChange={(e) => setReview(e.target.value)}
                         required
-                    />
+                    >
+                    </input>
                     <input
                         type="number"
+                        className="data2"
                         value={stars}
                         placeholder='Stars'
                         onChange={(e) => setStars(e.target.value)}
                         required
-                    />
+                    >
+                    </input>
                 </label>
                 <button className="submit-review-button" type="submit">Post New Review</button>
             </form>

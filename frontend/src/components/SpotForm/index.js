@@ -19,11 +19,27 @@ const SpotForm = () => {
 
 
     const currentUser = useSelector(state => state.session.user);
+    if(uponCompletion) return <Redirect to="/" />;
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     const errors = [];
+
+    //     if(!currentUser) errors.push("Must be logged in for you to create a spot");
+    //     if(address.length === 0) errors.push("Please enter a valid street address");
+    //     if(city.length === 0) errors.push("Please enter a valid city");
+    //     if(state.length === 0) errors.push("Please enter a valid state");
+    //     if(country.length === 0) errors.push("Please enter a valid country");
+    //     if(name.length === 0) errors.push("Please enter a name. It is required");
+    //     if(description.length === 0) errors.push("Please enter a valid description. It is required");
+    //     if(price < 0) errors.push("Please enter a price greater than or equal to 0");
+    //     if(!previewImage) errors.push("Please enter a valid image URL");
+
+    //     setValidationErrors(errors);
+    // }, [currentUser, address, city, state, country, name, description, price, previewImage]);
+    const validations = () => {
         const errors = [];
 
-        if(!currentUser) errors.push("Must be logged in for you to create a spot");
+        if(!currentUser) errors.push("Must be logged in for you to edit your spot");
         if(address.length === 0) errors.push("Please enter a valid street address");
         if(city.length === 0) errors.push("Please enter a valid city");
         if(state.length === 0) errors.push("Please enter a valid state");
@@ -33,8 +49,10 @@ const SpotForm = () => {
         if(price < 0) errors.push("Please enter a price greater than or equal to 0");
         if(!previewImage) errors.push("Please enter a valid image URL");
 
-        setValidationErrors(errors);
-    }, [currentUser, address, city, state, country, name, description, price, previewImage]);
+        return errors;
+    }
+
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -50,23 +68,27 @@ const SpotForm = () => {
             price,
             lat: 120.25,
             lng: 75.89,
-            previewImage: "https://a0.muscache.com/im/pictures/miso/Hosting-673806390132966717/original/b4e61614-2b6d-48bd-8a85-9f12a803a5e6.jpeg?im_w=1200"
+            previewImage
+        }
+        const valErrs = validations();
+        if(valErrs.length > 0) {
+            setValidationErrors(valErrs)
+            return;
         }
 
         return dispatch(createNovelSpot(brandNewSpot))
             .then(async(res) => {setUponCompletion(true)})
             .catch(async(res) => {
-                const newSpot = await res.json();
-                if(newSpot && newSpot.errors) setValidationErrors(newSpot.errors)
+                const brandNewSpot = await res.json();
+                if(brandNewSpot && brandNewSpot.errors) setValidationErrors(brandNewSpot.errors)
             })
     };
-    if(uponCompletion) return <Redirect to="/" />;
 
     return (
         <>
          <div className="complete-layout">
             <div className="spotcreation-form">
-                <h1 className="spotform-header">Let's connect your home to HomeyBnb!</h1>
+                <h1 className="spotform-header">Let's connect your home!</h1>
                 <form className="spot-form" onSubmit={handleSubmit}>
                     <ul className="spot-form-errors">
                         {validationErrors.map((error) => (
@@ -76,6 +98,7 @@ const SpotForm = () => {
                     <label>
                         <input
                             type="text"
+                            className="new-spot-data"
                             value={address}
                             placeholder= 'Address'
                             onChange={(e) => setAddress(e.target.value)}
@@ -85,6 +108,7 @@ const SpotForm = () => {
                     <label>
                         <input
                             type="text"
+                            className="new-spot-data"
                             value={city}
                             placeholder= 'City'
                             onChange={(e) => setCity(e.target.value)}
@@ -94,6 +118,7 @@ const SpotForm = () => {
                     <label>
                         <input
                             type="text"
+                            className="new-spot-data"
                             value={state}
                             placeholder= 'State'
                             onChange={(e) => setState(e.target.value)}
@@ -103,6 +128,7 @@ const SpotForm = () => {
                     <label>
                         <input
                             type="text"
+                            className="new-spot-data"
                             value={country}
                             placeholder= 'Country'
                             onChange={(e) => setCountry(e.target.value)}
@@ -112,6 +138,7 @@ const SpotForm = () => {
                     <label>
                         <input
                             type="text"
+                            className="new-spot-data"
                             value={name}
                             placeholder= 'Name'
                             onChange={(e) => setName(e.target.value)}
@@ -121,6 +148,7 @@ const SpotForm = () => {
                     <label>
                         <input
                             type="text"
+                            className="new-spot-data"
                             value={description}
                             placeholder= 'Description'
                             onChange={(e) => setDescription(e.target.value)}
@@ -130,6 +158,7 @@ const SpotForm = () => {
                     <label>
                         <input
                             type="number"
+                            className="new-spot-data"
                             value={price}
                             placeholder= 'Price'
                             onChange={(e) => setPrice(e.target.value)}
@@ -139,6 +168,7 @@ const SpotForm = () => {
                     <label>
                         <input
                             type="text"
+                            className="new-spot-data"
                             value={previewImage}
                             placeholder= 'Img url'
                             onChange={(e) => setPreviewImage(e.target.value)}

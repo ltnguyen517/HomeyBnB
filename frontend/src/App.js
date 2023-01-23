@@ -7,6 +7,8 @@ import HomeSpotsPage from "./components/HomeAllSpots";
 import SpotForm from "./components/SpotForm";
 import SpotEditing from "./components/EditSpot";
 import SingleSpotDetails from "./components/ASpotDetailPage";
+import ReviewForm from "./components/CreateReview";
+import Error404Page from "./components/Error";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,11 +28,17 @@ function App() {
           <Route exact path="/spots/new">
             <SpotForm />
           </Route>
+          <Route exact path="/spots/:spotId">
+            <SingleSpotDetails />
+          </Route>
           <Route exact path="/spots/:spotId/edit">
             <SpotEditing />
           </Route>
-          <Route exact path="/spots/:spotId">
-            <SingleSpotDetails />
+          <Route exact path="/spots/:spotId/review">
+            <ReviewForm />
+          </Route>
+          <Route exact path="*">
+            <Error404Page />
           </Route>
         </Switch>
       )}
