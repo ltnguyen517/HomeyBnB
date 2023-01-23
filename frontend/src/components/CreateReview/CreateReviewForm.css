@@ -1,0 +1,45 @@
+.whole-review-form {
+    display: flex;
+    justify-content: center;
+    height: 401px;
+}
+.review-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.6px solid black;
+    border-radius: 1.1rem;
+    margin-top: 51px;
+    width: 499px;
+}
+.form-errors {
+    padding-left: 0.1px;
+}
+.review-form-data-placement {
+    display: flex;
+    flex-direction: column;
+    width: 399px;
+}
+.data {
+    margin-bottom: 4px;
+    height: 49px;
+    border-radius: 0.55rem;
+    border-width: 0.55px;
+}
+.data2 {
+    margin-top: 5.5px;
+    height: 49px;
+    margin-bottom: 10.5px;
+    border-radius: 0.55rem;
+    border-width: 0.55px;
+}
+.submit-review-button {
+    background-color: rgb(243, 26, 109);
+    color: white;
+    height: 49px;
+    width: 399px;
+    padding: 0;
+    border-radius: 0.55rem;
+    border-width: 0.55px;
+    cursor: pointer;
+}

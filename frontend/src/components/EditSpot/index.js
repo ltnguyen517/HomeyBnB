@@ -11,17 +11,33 @@ const SpotEditing = () => {
     const currentUser = useSelector((state) => state.session.user);
     let { spotId } = useParams();
     spotId = Number(spotId);
-    const [ address, setAddress ] = useState(spotUpdate.address);
-    const [ city, setCity ] = useState(spotUpdate.city);
-    const [ state, setState ] = useState(spotUpdate.state);
-    const [ country, setCountry ] = useState(spotUpdate.country);
-    const [ name, setName ] = useState(spotUpdate.name);
-    const [ description, setDescription ] = useState(spotUpdate.description);
-    const [ price, setPrice ] = useState(spotUpdate.price);
+    const [ address, setAddress ] = useState(spotUpdate?.address);
+    const [ city, setCity ] = useState(spotUpdate?.city);
+    const [ state, setState ] = useState(spotUpdate?.state);
+    const [ country, setCountry ] = useState(spotUpdate?.country);
+    const [ name, setName ] = useState(spotUpdate?.name);
+    const [ description, setDescription ] = useState(spotUpdate?.description);
+    const [ price, setPrice ] = useState(spotUpdate?.price);
     const [ previewImage, setPreviewImage ] = useState("");
     const [ validationErrors, setValidationErrors ] = useState([]);
 
-    useEffect(() => {
+    // useEffect(() => {
+    //     const errors = [];
+
+    //     if(!currentUser) errors.push("Must be logged in for you to edit your spot");
+    //     if(address.length === 0) errors.push("Please enter a valid street address");
+    //     if(city.length === 0) errors.push("Please enter a valid city");
+    //     if(state.length === 0) errors.push("Please enter a valid state");
+    //     if(country.length === 0) errors.push("Please enter a valid country");
+    //     if(name.length === 0) errors.push("Please enter a name. It is required");
+    //     if(description.length === 0) errors.push("Please enter a valid description. It is required");
+    //     if(price < 0) errors.push("Please enter a price greater than or equal to 0");
+    //     if(!previewImage) errors.push("Please enter a valid image URL");
+
+    //     setValidationErrors(errors);
+    // }, [currentUser, address, city, state, country, name, description, price, previewImage]);
+
+    const validations = () => {
         const errors = [];
 
         if(!currentUser) errors.push("Must be logged in for you to edit your spot");
@@ -34,8 +50,9 @@ const SpotEditing = () => {
         if(price < 0) errors.push("Please enter a price greater than or equal to 0");
         if(!previewImage) errors.push("Please enter a valid image URL");
 
-        setValidationErrors(errors);
-    }, [currentUser, address, city, state, country, name, description, price, previewImage]);
+        return errors;
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -53,7 +70,11 @@ const SpotEditing = () => {
             lng: 75.89,
             previewImage
         }
-
+        const valErrs = validations();
+        if(valErrs.length > 0) {
+            setValidationErrors(valErrs)
+            return
+        }
         return dispatch(editASpot(spotId, updateSpot))
             .then(async(res) => {history.push(`/spots/${spotId}`)})
             .catch(async(res) => {
@@ -76,6 +97,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
+                            className="data"
                             value={address}
                             placeholder= 'Address'
                             onChange={(e) => setAddress(e.target.value)}
@@ -85,6 +107,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
+                            className="data"
                             value={city}
                             placeholder= 'City'
                             onChange={(e) => setCity(e.target.value)}
@@ -94,6 +117,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
+                            className="data"
                             value={state}
                             placeholder= 'State'
                             onChange={(e) => setState(e.target.value)}
@@ -103,6 +127,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
+                            className="data"
                             value={country}
                             placeholder= 'Country'
                             onChange={(e) => setCountry(e.target.value)}
@@ -112,6 +137,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
+                            className="data"
                             value={name}
                             placeholder= 'Name'
                             onChange={(e) => setName(e.target.value)}
@@ -121,6 +147,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
+                            className="data"
                             value={description}
                             placeholder= 'Description'
                             onChange={(e) => setDescription(e.target.value)}
@@ -130,6 +157,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="number"
+                            className="data"
                             value={price}
                             placeholder= 'Price'
                             onChange={(e) => setPrice(e.target.value)}
@@ -139,6 +167,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
+                            className="data"
                             value={previewImage}
                             placeholder= 'Img url'
                             onChange={(e) => setPreviewImage(e.target.value)}

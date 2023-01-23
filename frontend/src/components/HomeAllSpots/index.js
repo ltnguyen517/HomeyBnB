@@ -21,13 +21,15 @@ const HomeSpotsPage = () => {
                     <div className="placeslayout">
                         <div className="eachspot-container">
                             <Link className="place-img" to={`/spots/${spot.id}`}>
-                                <img className="spot-img" src={spot.previewImage} alt="Home" />
+                                <img className="spot-img" src={spot.url || "https://photos.zillowstatic.com/fp/991efe571b501b31dd1b9b40a303e995-uncropped_scaled_within_1536_1152.webp"} alt='Home'></img>
                                 <div className="vertexofcard-container">
                                     <div className="city-info">{spot.city + ", " + spot.state}</div>
-                                    <div className="info">
+                                    <div>
                                         <div className="spot-stars">
                                             <i className="fa-solid fa-star"></i>
-                                            {spot.avgRating}
+                                            {/* {spot.avgRating} */}
+
+                                            {Number(spot.avgRating).toFixed(2)}
                                         </div>
                                     </div>
                                 </div>

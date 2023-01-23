@@ -1,0 +1,184 @@
+.single-spot-page {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+}
+.spot-top-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 59%
+}
+.spot-name-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.place-name {
+    font-size: 27px;
+    font-weight: 399;
+    margin-top: 29px;
+}
+.delete-edit-button-area {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+}
+.button {
+    color: white;
+    height: 26px;
+    width: 101px;
+    margin-left: 6px;
+    cursor: pointer;
+    border-radius: 11px;
+    border-width: 0.3px;
+    border-color: rgba(128, 128, 128, 0);
+    background-image: radial-gradient(
+    circle at center center,
+    rgb(255, 56, 92) 0%,
+    rgb(230, 30, 77) 27.5%,
+    rgb(227, 28, 95) 40%,
+    rgb(215, 4, 102) 57.5%,
+    rgb(189, 30, 89) 75%,
+    rgb(189, 30, 89) 100%
+  );
+}
+.button2 {
+    color: white;
+    height: 26px;
+    width: 115px;
+    margin-left: 4px;
+    cursor: pointer;
+    border-radius: 11px;
+    border-width: 0.3px;
+    border-color: rgba(128, 128, 128, 0);
+    background-image: radial-gradient(
+    circle at center center,
+    rgb(255, 56, 92) 0%,
+    rgb(230, 30, 77) 27.5%,
+    rgb(227, 28, 95) 40%,
+    rgb(215, 4, 102) 57.5%,
+    rgb(189, 30, 89) 75%,
+    rgb(189, 30, 89) 100%
+  );
+}
+.spot-info-top-beneath {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.spot-data {
+    display: flex;
+    margin-bottom: 29px;
+    justify-content: flex-start;
+    font-size: 15px;
+}
+.info-star-rating {
+    font-weight: 599;
+    margin-right: 11px;
+}
+.little-dot {
+    font-size: 2px;
+    display: flex;
+    align-items: center;
+    margin-right: 10.5px;
+}
+.number-reviews {
+    font-weight: bold;
+    text-decoration: underline;
+    margin-right: 10.5px;
+}
+.superhost-medal {
+    margin-right: 10.5px;
+}
+.superhost-text {
+    margin-right: 10.5px;
+}
+.location {
+    font-weight: bold;
+    text-decoration: underline;
+}
+.images-container {
+    width: 100%;
+}
+.the-spot-image {
+    width: 59%;
+    margin-left: 300px;
+    border-radius: 1rem;
+    object-fit: cover;
+}
+.below-images-info {
+    width: 59%;
+}
+.stay-hosted-by {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    margin-top: 28px;
+}
+.nightly-price {
+    display: flex;
+    align-items: center;
+}
+.price {
+    margin-right: 10.5px;
+}
+.night-text {
+    font-size: 18.5px;
+}
+.amount-info {
+    display: flex;
+    margin-bottom: 21px;
+    font-size: 15.5px;
+}
+.amount-data {
+    margin-right: 10.5px;
+}
+.three-pros {
+    border-top: 0.06px solid rgba(128, 128, 128, 0.253);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.pros-icons {
+    display: flex;
+    flex-direction: column;
+    font-size: 30.5px;
+    justify-content: space-around;
+}
+.pros-short-descriptions {
+    margin-left: 20.5px;
+}
+.details {
+    font-size: 10.5pt;
+    color: grey;
+}
+.aircover {
+    border-bottom: 0.06px solid rgba(128, 128, 128, 0.253);
+    margin-right: 45px;
+    margin-left: 85px;
+    padding: 10px 0px 40px 0px;
+    color: #3c3c3c;
+    font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.about-box {
+    /* border-top: 0.05px solid rgba(128, 128, 128, 0.253); */
+    margin-bottom: 39px;
+    margin-top: 39px;
+    margin-right: 515px;
+    height: auto;
+    font-size: 16px;
+}
+
+.reviews-area {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    border-top: 0.06px solid rgba(128, 128, 128, 0.253);
+}

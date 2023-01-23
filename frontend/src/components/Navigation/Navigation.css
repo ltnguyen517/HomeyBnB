@@ -1,0 +1,128 @@
+.header {
+    border-bottom: 0.052px solid rgba(128, 128, 128, 0.253);
+    height: 100%;
+    width: auto;
+    display: flex;
+}
+
+.nav-push {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    width: 100%;
+    margin: 10.1px 72.2px;
+    padding: 0px;
+}
+.icon{
+  height: 40px;
+  margin-left: 85px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 10px;
+}
+
+.prof-button {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: static;
+    width: 77px;
+    height: 42.8px;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 2.1rem;
+    border-width: 0.055px;
+    border-color: rgba(128, 128, 128, 0.226);
+    background-color: white;
+    color: black;
+}
+.prof-button > i ~ i {
+    font-size: 29px;
+    color: grey;
+}
+.profile-dropdown {
+    list-style: none;
+    position: absolute;
+}
+.hidden {
+    display: none;
+}
+.user-dropdown {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    height: 169px;
+    width: auto;
+    min-width: 201px;
+    top: 29px;
+    right: -51%;
+    border-radius: 9px;
+    border: 0.52px solid white;
+    box-shadow: 0px 0px 1px 1.2px rgb(221, 217, 217);
+    cursor: default;
+}
+.user-dropdown :hover {
+    background-color: rgba(207, 202, 202, 0.137);
+}
+.user-data {
+    display: flex;
+    height: 31px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 6px;
+    font-size: 16px;
+    width: 85%;
+}
+.user-createspot {
+    text-decoration: none;
+    color: rgb(255, 56, 92);
+    width: 100%;
+}
+.logout {
+    width: 100%;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 6px;
+    border-radius: 11px;
+    border-width: 0.25px;
+    border-color: rgba(128, 128, 128, 0);
+    background-image: radial-gradient(
+      circle at center center,
+      rgb(255, 56, 92) 0%,
+      rgb(230, 30, 77) 27.5%,
+      rgb(227, 28, 95) 40%,
+      rgb(215, 4, 102) 57.5%,
+      rgb(189, 30, 89) 75%,
+      rgb(189, 30, 89) 100%
+    );
+}
+.dropdown {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    border: 0.55px solid white;
+    box-shadow: 0px 0px 1px 1.2px rgb(221, 217, 217);
+    border-radius: 11px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding-left: 21px;
+    margin: 11px;
+    font-size: 21px;
+    height: 101px;
+    width: 183px;
+    position: absolute;
+    top: 21px;
+    right: -81%;
+    list-style: none;
+    cursor: default;
+}
+.buttons {
+    width: 92%;
+}
+.buttons :hover {
+    cursor: pointer;
+    background-color: rgba(207, 202, 202, 0.137);
+}
