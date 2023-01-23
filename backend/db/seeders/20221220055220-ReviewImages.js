@@ -11,7 +11,7 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         reviewId: 1,
-        url: 'https://www.airbnb.com/spotimage/4615-Merwin-St-detail/'
+        url: 'https://photos.zillowstatic.com/fp/3f5360b14e1700325df680f55f77161b-uncropped_scaled_within_1344_1008.webp'
       },
       {
         reviewId: 2,
