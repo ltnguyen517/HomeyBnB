@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/ltnguyen517/API-project/issues"
   },
-  "homepage": "https://github.com/ltnguyen517/API-project#readme"
+  "homepage": "https://github.com/ltnguyen517/API-project#readme",
+  "dependencies": {
+    "js-cookie": "^3.0.1"
+  }
 }
