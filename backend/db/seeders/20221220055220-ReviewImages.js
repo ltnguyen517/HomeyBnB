@@ -11,39 +11,32 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         reviewId: 1,
-        url: 'https://photos.zillowstatic.com/fp/3f5360b14e1700325df680f55f77161b-uncropped_scaled_within_1344_1008.webp'
+        url: 'modernliving.url'
       },
       {
         reviewId: 2,
-        url: 'https://www.airbnb.com/spotimage/27-Mott-Ln-detail/'
+        url: 'forestystay.url'
       },
       {
         reviewId: 3,
-        url: 'https://www.airbnb.com/spotimage/1000-Kirby-Dr-detail/'
+        url: 'rusticstay.url'
+      },
+      {
+        reviewId: 4,
+        url: 'luxurybeachfront.url'
+      },
+      {
+        reviewId: 5,
+        url: 'cozyarea.url'
       }
     ], {});
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
   },
 
   async down (queryInterface, Sequelize) {
     options.tableName = 'ReviewImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      reviewId: { [Op.in]: [1, 2, 3] }
+      reviewId: { [Op.in]: [1, 2, 3, 4, 5] }
     }, {});
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
   }
 };
