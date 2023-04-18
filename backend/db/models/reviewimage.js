@@ -17,14 +17,12 @@ module.exports = (sequelize, DataTypes) => {
   ReviewImage.init({
     reviewId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      onDelete: 'CASCADE'
+      allowNull: false
     },
     url: {
       type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    }
+      allowNull: false
+    },
   }, {
     sequelize,
     modelName: 'ReviewImage',
