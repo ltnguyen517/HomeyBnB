@@ -49,31 +49,65 @@ module.exports = {
         spotId: 8,
         url: 'https://a0.muscache.com/im/pictures/miso/Hosting-46695796/original/9bd67185-dc83-4473-a191-9486c62aec66.jpeg?im_w=1200',
         preview: true
+      },
+      {
+        spotId: 9,
+        url: 'https://a0.muscache.com/im/pictures/8d9afde8-3412-4ca5-92a3-de1c8c628360.jpg?im_w=1200',
+        preview: true
+      },
+      {
+        spotId: 10,
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-523783410417354397/original/a0517e76-4d5a-4ead-b69a-a9acfcffab26.jpeg?im_w=1440',
+        preview: true
+      },
+      {
+        spotId: 11,
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-48766928/original/01c3131c-c07f-4151-b72a-c908f0a3f2dc.jpeg?im_w=1440',
+        preview: true
+      },
+      {
+        spotId: 12,
+        url: 'https://a0.muscache.com/im/pictures/87f909e9-7c78-4561-bf4c-81dc0d4087bc.jpg?im_w=1200',
+        preview: true
+      },
+      {
+        spotId: 13,
+        url: 'https://a0.muscache.com/im/pictures/a7c4c78b-2b3e-4d46-9e31-2ab3e46a908e.jpg?im_w=1200',
+        preview: true
+      },
+      {
+        spotId: 14,
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-640411639154517733/original/52de873e-7da2-4e41-be62-e69cc5bbad8b.jpeg?im_w=1200',
+        preview: true
+      },
+      {
+        spotId: 15,
+        url: 'https://a0.muscache.com/im/pictures/3519a978-e885-4d8a-afc7-0bfb3d663e3d.jpg?im_w=1440',
+        preview: true
+      },
+      {
+        spotId: 16,
+        url: 'https://a0.muscache.com/im/pictures/bef74f25-cf5c-4c0b-be9e-542a844d10e9.jpg?im_w=1200',
+        preview: true
+      },
+      {
+        spotId: 17,
+        url: 'https://a0.muscache.com/im/pictures/miso/Hosting-752943099290902616/original/a00f8cfd-591b-48d4-a7ca-4c9427ef54d2.jpeg?im_w=1440',
+        preview: true
+      },
+      {
+        spotId: 18,
+        url: 'https://a0.muscache.com/im/pictures/monet/Luxury-28540017/original/42cde801-3346-41c6-a63a-40bd5a2d5867?im_w=1440',
+        preview: true
       }
-
     ], {});
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
   },
 
   async down (queryInterface, Sequelize) {
     options.tableName = 'SpotImages';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      spotId: { [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8] }
+      spotId: { [Op.in]: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18] }
     }, {});
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
   }
 };
