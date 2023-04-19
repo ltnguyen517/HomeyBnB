@@ -54,6 +54,7 @@
 .bottomofcard {
     display: flex;
     justify-content: flex-start;
+    font-size: 15.3px;
 }
 
 .night-word {
@@ -66,11 +67,14 @@
 
 .spot-stars {
     margin-left: 23px;
+    font-size: 14px;
 }
 
 .vertexofcard-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 21px;
+    margin-bottom: 17px;
+    margin-top: 8px;
+    font-size: 15.3px;
 }

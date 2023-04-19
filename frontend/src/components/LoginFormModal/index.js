@@ -35,7 +35,6 @@ function LoginFormModal() {
             ))}
           </ul>
           <label>
-            Username or Email
             <input
               className="datainputlogin"
               type="text"
@@ -47,7 +46,6 @@ function LoginFormModal() {
           </label>
           <br/>
           <label>
-            Password
             <input
               className="datainputlogin"
               type="password"
