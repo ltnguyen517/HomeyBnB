@@ -6,53 +6,37 @@ import './SpotForm.css'
 
 const SpotForm = () => {
     const dispatch = useDispatch();
+
     const [ address, setAddress ] = useState("");
     const [ city, setCity ] = useState("");
     const [ state, setState ] = useState("");
     const [ country, setCountry ] = useState("");
     const [ name, setName ] = useState("");
     const [ description, setDescription ] = useState("");
-    const [ price, setPrice ] = useState(0);
+    const [ price, setPrice ] = useState(1);
     const [ previewImage, setPreviewImage ] = useState("");
     const [ validationErrors, setValidationErrors ] = useState([]);
     const [ uponCompletion, setUponCompletion ] = useState(false);
 
-
     const currentUser = useSelector(state => state.session.user);
+
     if(uponCompletion) return <Redirect to="/" />;
 
-    // useEffect(() => {
-    //     const errors = [];
-
-    //     if(!currentUser) errors.push("Must be logged in for you to create a spot");
-    //     if(address.length === 0) errors.push("Please enter a valid street address");
-    //     if(city.length === 0) errors.push("Please enter a valid city");
-    //     if(state.length === 0) errors.push("Please enter a valid state");
-    //     if(country.length === 0) errors.push("Please enter a valid country");
-    //     if(name.length === 0) errors.push("Please enter a name. It is required");
-    //     if(description.length === 0) errors.push("Please enter a valid description. It is required");
-    //     if(price < 0) errors.push("Please enter a price greater than or equal to 0");
-    //     if(!previewImage) errors.push("Please enter a valid image URL");
-
-    //     setValidationErrors(errors);
-    // }, [currentUser, address, city, state, country, name, description, price, previewImage]);
     const validations = () => {
         const errors = [];
 
         if(!currentUser) errors.push("Must be logged in for you to edit your spot");
-        if(address.length === 0) errors.push("Please enter a valid street address");
-        if(city.length === 0) errors.push("Please enter a valid city");
-        if(state.length === 0) errors.push("Please enter a valid state");
-        if(country.length === 0) errors.push("Please enter a valid country");
-        if(name.length === 0) errors.push("Please enter a name. It is required");
-        if(description.length === 0) errors.push("Please enter a valid description. It is required");
-        if(price < 0) errors.push("Please enter a price greater than or equal to 0");
+        if(address.length < 4) errors.push("Please enter a street address with a length greater than 3 characters");
+        if(city.length < 3) errors.push("Please enter a city with a length greater than 2 characters");
+        if(state.length < 2) errors.push("Please enter a state with a length greater than 1 character");
+        if(country.length < 2) errors.push("Please enter a country with a length greater than 1 character");
+        if(name.length < 5) errors.push("Please enter a name longer than 4 characters. It is required");
+        if(description.length < 10) errors.push("Please enter a valid description longer than 9 characters. It is required");
+        if(price < 1) errors.push("Please enter a price greater than $0");
         if(!previewImage) errors.push("Please enter a valid image URL");
 
         return errors;
-    }
-
-
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -91,8 +75,8 @@ const SpotForm = () => {
                 <h1 className="spotform-header">Let's connect your home!</h1>
                 <form className="spot-form" onSubmit={handleSubmit}>
                     <ul className="spot-form-errors">
-                        {validationErrors.map((error) => (
-                            <li key={error}>{error}</li>
+                        {validationErrors.map((error, idx) => (
+                            <li key={idx}>{error}</li>
                         ))}
                     </ul>
                     <label>
@@ -160,7 +144,7 @@ const SpotForm = () => {
                             type="number"
                             className="new-spot-data"
                             value={price}
-                            placeholder= 'Price'
+                            min={1}
                             onChange={(e) => setPrice(e.target.value)}
                             required
                         />
@@ -170,7 +154,7 @@ const SpotForm = () => {
                             type="text"
                             className="new-spot-data"
                             value={previewImage}
-                            placeholder= 'Img url'
+                            placeholder= 'Place Image Address/URL Here'
                             onChange={(e) => setPreviewImage(e.target.value)}
                             required
                         />
