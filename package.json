@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/ltnguyen517/API-project#readme",
   "dependencies": {
-    "js-cookie": "^3.0.1"
+    "js-cookie": "^3.0.1",
+    "sequelize": "^6.31.0"
   }
 }
