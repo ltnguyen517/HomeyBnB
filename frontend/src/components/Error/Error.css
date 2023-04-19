@@ -5,22 +5,23 @@
     flex-direction: column;
 }
 .img-of-error {
-    margin: 25px;
+    margin: 15px;
     object-fit: cover;
     height: 650px;
-    width: 880px;
+    width: 795px;
 }
 .button-area {
     display: flex;
     justify-content: center;
 }
 .back-home-button {
-    width: 190px;
-    height: 32px;
+    width: 200px;
+    height: 45px;
+    font-size: 18px;
     color: white;
     cursor: pointer;
-    border-radius: 11px;
-    border-width: 0.3px;
+    border-radius: 13px;
+    border-width: 0.4px;
     border-color: rgba(128, 128, 128, 0);
     background-image: radial-gradient(
       circle at center center,
