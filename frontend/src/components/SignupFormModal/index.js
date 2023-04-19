@@ -35,69 +35,65 @@ function SignupFormModal() {
       <h1 className="signup-title">Sign Up</h1>
       <form className="signup-box" onSubmit={handleSubmit}>
         <ul className="errors-container">
-          {errors.map((error, idx) => <li className="error-list" key={idx}>{error}</li>)}
+          {errors.map((error, idx) => (
+            <li className="error-list" key={idx}>{error}</li>
+          ))}
         </ul>
         <label>
-          Email
           <input
             type="text"
-            className="data"
+            className="datasignup"
             value={email}
-            placeholder="Email"
+            placeholder=" Email"
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
         <label>
-          Username
           <input
             type="text"
-            className="data"
+            className="datasignup"
             value={username}
-            placeholder="Username"
+            placeholder=" Username"
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </label>
         <label>
-          First Name
           <input
             type="text"
-            className="data"
+            className="datasignup"
             value={firstName}
-            placeholder="First Name"
+            placeholder=" First Name"
             onChange={(e) => setFirstName(e.target.value)}
             required
           />
         </label>
         <label>
-          Last Name
           <input
             type="text"
-            className="data"
+            className="datasignup"
             value={lastName}
-            placeholder="Last Name"
+            placeholder=" Last Name"
             onChange={(e) => setLastName(e.target.value)}
             required
           />
         </label>
         <label>
-          Password
           <input
             type="password"
-            className="data"
+            className="datasignup"
             value={password}
-            placeholder="Password"
+            placeholder=" Password"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
         <label>
-          Confirm Password
           <input
             type="password"
-            className="data"
-            placeholder="Confirm Password"
+            className="datasignup"
+            placeholder=" Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
