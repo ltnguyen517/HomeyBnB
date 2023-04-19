@@ -7,11 +7,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 601px;
+    width: 600px;
     height: auto;
-    border: 0.55px solid black;
-    border-radius: 1.1rem;
-    margin-top: 62px;
+    border: 0.4px solid rgba(131, 127, 127, 0.349);
+    border-radius: 2rem;
+    margin-top: 60px;
+    margin-bottom: 50px;
 }
 .new-spot-data {
     box-sizing: border-box;
@@ -26,13 +27,14 @@
 .spot-creation-button {
     box-sizing: border-box;
     width: 401px;
+    font-size: 17px;
     display: flex;
     padding: 10.5px;
-    margin-top: 11px;
-    margin-bottom: 28px;
+    margin-top: 35px;
+    margin-bottom: 31px;
     color: white;
     justify-content: center;
-    border-radius: 10.5px;
+    border-radius: 12px;
     border-width: 0.25px;
     border-color: rgba(128, 128, 128, 0);
     background-image: radial-gradient(
