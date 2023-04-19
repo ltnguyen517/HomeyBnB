@@ -29,8 +29,9 @@ const ReviewForm = () => {
 
     const validations = () => {
         const errors = [];
+
         if(!currentUser) errors.push('Must be logged in to create a review');
-        if(review.length < 1) errors.push('Please type a review with greater than 1 character');
+        if(review.length < 10) errors.push('Please make a review with at least 10 characters');
         if(stars < 1 || stars > 5 || !Number(stars)) errors.push('Please enter a star rating that is between 1 and 5');
         return errors;
     };
@@ -58,8 +59,8 @@ const ReviewForm = () => {
         <div className="whole-review-form">
             <form className="review-form" onSubmit={handleSubmit}>
                 <h1 className="review-form-title">Let's post a review!</h1>
-                <ul className="form-errors">{errors.map((error) => (
-                    <li key={error}>{error}</li>
+                <ul className="form-errors">{errors.map((error, idx) => (
+                    <li key={idx}>{error}</li>
                 ))}
                 </ul>
                 <label className="review-form-data-placement">
@@ -67,7 +68,7 @@ const ReviewForm = () => {
                         type="text"
                         className="data"
                         value={review}
-                        placeholder='Review'
+                        placeholder='Reviews must be at least 10 characters long'
                         onChange={(e) => setReview(e.target.value)}
                         required
                     >
@@ -76,7 +77,8 @@ const ReviewForm = () => {
                         type="number"
                         className="data2"
                         value={stars}
-                        placeholder='Stars'
+                        placeholder='  Stars'
+                        min={1}
                         onChange={(e) => setStars(e.target.value)}
                         required
                     >

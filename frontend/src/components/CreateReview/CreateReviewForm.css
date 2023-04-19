@@ -1,7 +1,7 @@
 .whole-review-form {
     display: flex;
     justify-content: center;
-    height: 401px;
+    height: 390px;
 }
 .review-form {
     display: flex;
@@ -13,7 +13,7 @@
     width: 499px;
 }
 .form-errors {
-    padding-left: 0.1px;
+    padding-left: 5px;
 }
 .review-form-data-placement {
     display: flex;
@@ -25,13 +25,15 @@
     height: 49px;
     border-radius: 0.55rem;
     border-width: 0.55px;
+    font-size: 15px;
 }
 .data2 {
-    margin-top: 5.5px;
+    margin-top: 4px;
     height: 49px;
-    margin-bottom: 10.5px;
+    margin-bottom: 15.5px;
     border-radius: 0.55rem;
     border-width: 0.55px;
+    font-size: 15px;
 }
 .submit-review-button {
     background-color: rgb(243, 26, 109);
@@ -42,4 +44,5 @@
     border-radius: 0.55rem;
     border-width: 0.55px;
     cursor: pointer;
+    font-size: 17px;
 }
