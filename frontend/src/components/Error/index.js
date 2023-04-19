@@ -11,7 +11,7 @@ const Error404Page = () => {
             <div className='button-area'>
                 <button className='back-home-button' onClick={() => {
                     history.push('/');
-                }}>Return to Home</button>
+                }}>Return Home</button>
             </div>
         </div>
     );
