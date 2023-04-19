@@ -54,7 +54,7 @@ function ProfileButton({ user }) {
               <li className="user-data">
                 <Link className="user-createspot" to={'/spots/new'}>HomeyBnB your home</Link>
               </li>
-              <li className="user-data">{user.username}</li>
+              {/* <li className="user-data">{user.username}</li> */}
               <li className="user-data">{user.firstName} {user.lastName}</li>
               <li className="user-data">{user.email}</li>
               <li className="user-data">
@@ -64,15 +64,15 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <>
-          <div className="dropdown">
-            <div className="buttons">
-              <OpenModalMenuItem 
+          <div className="navdropdown">
+            <div className="navbuttons">
+              <OpenModalMenuItem
                 itemText="Log In"
                 onItemClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
             </div>
-            <div className="buttons">
+            <div className="navbuttons">
               <OpenModalMenuItem
                 itemText="Sign Up"
                 onItemClick={closeMenu}

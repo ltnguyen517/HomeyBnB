@@ -9,11 +9,11 @@ function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
 
   return (
-    <div className='header'>
+    <div className='navheader'>
       <ul className='nav-push'>
         <li>
           <NavLink exact to="/">
-            <img className='icon' src={logo} alt='HomeyBnB logo'></img>
+            <img className='homelogoicon' src={logo} alt='HomeyBnB logo'></img>
           </NavLink>
         </li>
         {isLoaded && (
