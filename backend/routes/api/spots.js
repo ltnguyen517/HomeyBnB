@@ -144,6 +144,9 @@ router.get('/current', requireAuth, async (req, res) => {
             starsTotal += review.stars
         });
         spot.avgRating = starsTotal / spot.Reviews.length;
+        if (spot.avgRating === null) {
+            spot.avgRating = 0
+        }
         delete spot.Reviews
     });
     spotArr.forEach(spot => {
