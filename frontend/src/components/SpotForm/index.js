@@ -25,7 +25,7 @@ const SpotForm = () => {
     const validations = () => {
         const errors = [];
 
-        if(!currentUser) errors.push("Must be logged in for you to edit your spot");
+        if(!currentUser) errors.push("Must be logged in for you to post your spot");
         if(address.length < 4) errors.push("Please enter a street address with a length greater than 3 characters");
         if(city.length < 3) errors.push("Please enter a city with a length greater than 2 characters");
         if(state.length < 2) errors.push("Please enter a state with a length greater than 1 character");

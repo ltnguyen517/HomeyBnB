@@ -7,10 +7,13 @@ import './EditSpot.css'
 const SpotEditing = () => {
     const history = useHistory();
     const dispatch = useDispatch();
+
     const spotUpdate = useSelector((state) => state.spots.singleSpot);
     const currentUser = useSelector((state) => state.session.user);
+
     let { spotId } = useParams();
     spotId = Number(spotId);
+
     const [ address, setAddress ] = useState(spotUpdate?.address);
     const [ city, setCity ] = useState(spotUpdate?.city);
     const [ state, setState ] = useState(spotUpdate?.state);
@@ -21,37 +24,21 @@ const SpotEditing = () => {
     const [ previewImage, setPreviewImage ] = useState("");
     const [ validationErrors, setValidationErrors ] = useState([]);
 
-    // useEffect(() => {
-    //     const errors = [];
-
-    //     if(!currentUser) errors.push("Must be logged in for you to edit your spot");
-    //     if(address.length === 0) errors.push("Please enter a valid street address");
-    //     if(city.length === 0) errors.push("Please enter a valid city");
-    //     if(state.length === 0) errors.push("Please enter a valid state");
-    //     if(country.length === 0) errors.push("Please enter a valid country");
-    //     if(name.length === 0) errors.push("Please enter a name. It is required");
-    //     if(description.length === 0) errors.push("Please enter a valid description. It is required");
-    //     if(price < 0) errors.push("Please enter a price greater than or equal to 0");
-    //     if(!previewImage) errors.push("Please enter a valid image URL");
-
-    //     setValidationErrors(errors);
-    // }, [currentUser, address, city, state, country, name, description, price, previewImage]);
-
     const validations = () => {
         const errors = [];
 
         if(!currentUser) errors.push("Must be logged in for you to edit your spot");
-        if(address.length === 0) errors.push("Please enter a valid street address");
-        if(city.length === 0) errors.push("Please enter a valid city");
-        if(state.length === 0) errors.push("Please enter a valid state");
-        if(country.length === 0) errors.push("Please enter a valid country");
-        if(name.length === 0) errors.push("Please enter a name. It is required");
-        if(description.length === 0) errors.push("Please enter a valid description. It is required");
-        if(price < 0) errors.push("Please enter a price greater than or equal to 0");
+        if(address.length < 4) errors.push("Please enter a street address with a length greater than 3 characters");
+        if(city.length < 3) errors.push("Please enter a city with a length greater than 2 characters");
+        if(state.length < 2) errors.push("Please enter a state with a length greater than 1 character");
+        if(country.length < 2) errors.push("Please enter a country with a length greater than 1 character");
+        if(name.length < 5) errors.push("Please enter a name longer than 4 characters. It is required");
+        if(description.length < 10) errors.push("Please enter a valid description longer than 9 characters. It is required");
+        if(price < 1) errors.push("Please enter a price greater than $0");
         if(!previewImage) errors.push("Please enter a valid image URL");
 
         return errors;
-    }
+    };
 
 
     const handleSubmit = async (e) => {
@@ -69,7 +56,7 @@ const SpotEditing = () => {
             lat: 120.25,
             lng: 75.89,
             previewImage
-        }
+        };
         const valErrs = validations();
         if(valErrs.length > 0) {
             setValidationErrors(valErrs)
@@ -78,8 +65,8 @@ const SpotEditing = () => {
         return dispatch(editASpot(spotId, updateSpot))
             .then(async(res) => {history.push(`/spots/${spotId}`)})
             .catch(async(res) => {
-                const updatedSpot = await res.json();
-                if(updatedSpot && updatedSpot.errors) setValidationErrors(updatedSpot.errors)
+                const data = await res.json();
+                if(data && data.errors) setValidationErrors(data.errors)
             })
     };
 
@@ -90,14 +77,14 @@ const SpotEditing = () => {
                 <h1 className="spotedit-header">Let's edit your spot!</h1>
                 <form className="spotedit-form" onSubmit={handleSubmit}>
                     <ul className="spot-edit-errors">
-                        {validationErrors.map((error) => (
-                            <li key={error}>{error}</li>
+                        {validationErrors.map((error, idx) => (
+                            <li key={idx}>{error}</li>
                         ))}
                     </ul>
                     <label>
                         <input
                             type="text"
-                            className="data"
+                            className="dataeditspot"
                             value={address}
                             placeholder= 'Address'
                             onChange={(e) => setAddress(e.target.value)}
@@ -107,7 +94,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
-                            className="data"
+                            className="dataeditspot"
                             value={city}
                             placeholder= 'City'
                             onChange={(e) => setCity(e.target.value)}
@@ -117,7 +104,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
-                            className="data"
+                            className="dataeditspot"
                             value={state}
                             placeholder= 'State'
                             onChange={(e) => setState(e.target.value)}
@@ -127,7 +114,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
-                            className="data"
+                            className="dataeditspot"
                             value={country}
                             placeholder= 'Country'
                             onChange={(e) => setCountry(e.target.value)}
@@ -137,7 +124,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
-                            className="data"
+                            className="dataeditspot"
                             value={name}
                             placeholder= 'Name'
                             onChange={(e) => setName(e.target.value)}
@@ -147,7 +134,7 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
-                            className="data"
+                            className="dataeditspot"
                             value={description}
                             placeholder= 'Description'
                             onChange={(e) => setDescription(e.target.value)}
@@ -157,9 +144,9 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="number"
-                            className="data"
+                            className="dataeditspot"
                             value={price}
-                            placeholder= 'Price'
+                            min={1}
                             onChange={(e) => setPrice(e.target.value)}
                             required
                         />
@@ -167,9 +154,9 @@ const SpotEditing = () => {
                     <label>
                         <input
                             type="text"
-                            className="data"
+                            className="dataeditspot"
                             value={previewImage}
-                            placeholder= 'Img url'
+                            placeholder= 'Place Image Address/URL Here'
                             onChange={(e) => setPreviewImage(e.target.value)}
                             required
                         />
