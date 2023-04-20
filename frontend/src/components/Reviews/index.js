@@ -10,6 +10,7 @@ const ReviewsSection = ({ spot }) => {
     const dispatch = useDispatch();
     let { spotId } = useParams();
     spotId = Number(spotId);
+
     const currentUser = useSelector((state) => state.session.user);
     const reviewsObj = useSelector((state) => state.reviews.spotReviews);
     const reviews = Object.values(reviewsObj);
@@ -33,26 +34,29 @@ const ReviewsSection = ({ spot }) => {
 
     const averageRating = () => {
         let rating = 0;
-        if(spot.avgRating === null) {
+        if(spot.avgStarRating === null) {
             return "New"
         } else {
-            rating += spot.avgRating
+            rating += spot.avgStarRating;
             return parseFloat(rating).toFixed(2)
         }
-    }
+    };
 
     return (
         <>
         <div className="all-reviews-container">
-            {/* <h1 className="review-title">User Reviews</h1> */}
             <div className="review-box-data">
                 <div className="box-left-data">
                     <div className="review-star">
                         <i className="fa-solid fa-star"></i>
+                        &nbsp;
                         {averageRating()}
                     </div>
                     <div className="little-dot">{<i className="fas fa-circle"></i>}</div>
-                    <div className="number-reviews2">{spot.numReviews + " review(s)"}</div>
+                    <div className="number-reviews2">
+                        {spot.numReviews === 1 ? spot.numReviews + " review" : spot.numReviews + " reviews"}
+                        {/* {spot.numReviews + " review(s)"} */}
+                    </div>
                 </div>
                 <div className="box-right-data">
                     <div>
@@ -63,26 +67,27 @@ const ReviewsSection = ({ spot }) => {
                 </div>
             </div>
             <div className="user-reviews">
-                {reviews.map((review) => (
-                    <div className="review-container" key={review.id}>
-                        <div className="person-delete">
-                            <div className="person">{review.User.firstName}</div>
-                            {currentUser && currentUser.id === review.userId &&
-                                <button className="delete-button" onClick={async (e) => {
-                                    e.preventDefault(e);
-                                    dispatch(deleteAReview(review.id));
-                                    history.push('/')
-                                }}>Delete Review</button>
-                            }
+                {reviews &&
+                    reviews.map((review) => (
+                        <div className="review-container" key={review.id}>
+                            <div className="person-delete">
+                                <div className="person">{review.User.firstName}</div>
+                                {currentUser && currentUser.id === review.userId &&
+                                    <button className="delete-button" onClick={async (e) => {
+                                        e.preventDefault(e);
+                                        dispatch(deleteAReview(review.id));
+                                        history.push('/')
+                                    }}>Delete Review</button>
+                                }
+                            </div>
+                            <div>{review.review}</div>
+                            &nbsp;
+                            <div>Stars Given: {<i className="fa-solid fa-star"></i>} {review.stars}</div>
                         </div>
-                        <div>Review by {review.User?.firstName}</div>
-                        <div>Description: {review.review}</div>
-                        <div>Stars: {<i className="fa-solid fa-star"></i>} {review.stars}</div>
-                    </div>
                 ))}
             </div>
         </div>
-        </>
-    )
+    </>
+    );
 };
 export default ReviewsSection;

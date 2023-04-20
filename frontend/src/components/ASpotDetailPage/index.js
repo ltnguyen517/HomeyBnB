@@ -57,8 +57,8 @@ const SingleSpotDetails = () => {
                     <h1 className="place-name">{spot.name}</h1>
                     {currentUser && currentUser.id === spot.ownerId && (
                         <div className="delete-edit-button-area">
-                            <button className="button" onClick={handleEditButton}>Edit your Spot</button>
-                            <button className="button2" onClick={handleDeleteButton}>Delete your Spot</button>
+                            <button className="button2" onClick={handleEditButton}>Edit Spot</button>
+                            <button className="button2" onClick={handleDeleteButton}>Delete Spot</button>
                         </div>
                     )}
                 </div>
@@ -74,7 +74,7 @@ const SingleSpotDetails = () => {
                             <i className="fas fa-circle"></i>
                         </div>
                         <div className="number-reviews">
-                            {spot.numReviews + " review(s)"}
+                            {spot.numReviews === 1 ? spot.numReviews + " review" : spot.numReviews + " reviews"}
                         </div>
                         <div className="little-dot">
                             <i className="fas fa-circle"></i>
@@ -139,6 +139,7 @@ const SingleSpotDetails = () => {
                 <div className="spot-description-area">
                     <h2 style={{ color: '#ff375c', fontSize: '32px'}}>air<span style={{ color: '#222' }}>cover</span></h2>
                     <p className="aircover-description">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
+                    <br/>
                     <h2 className="about-box">About this Spot</h2>
                     <div className="spot-descriptionbody">{spot.description}</div>
                 </div>
