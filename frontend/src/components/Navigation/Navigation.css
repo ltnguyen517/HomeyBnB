@@ -14,13 +14,12 @@
     padding: 0px;
 }
 .homelogoicon{
-  height: 50px;
+  height: 54px;
   margin-left: 88px;
   margin-top: 8px;
   margin-bottom: 8px;
   margin-right: 10px;
 }
-
 .prof-button {
     display: flex;
     justify-content: space-around;
@@ -28,7 +27,7 @@
     position: static;
     width: 125px;
     height: 45px;
-    margin-right: 40px;
+    margin-right: 41px;
     margin-top: 7px;
     font-size: 15px;
     cursor: pointer;
