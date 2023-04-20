@@ -116,7 +116,7 @@ module.exports = {
         lat: 70.11,
         lng: 32.01,
         name: 'The Catskill A-Frame',
-        description: 'Our fully-restored 1964 built A-Frame cabin is the perfect getaway from the everyday. Nestled up in the western Catskill Mountains, on 1/4 acre, with lake views from the main, and third floor, as well as a forest & stream in our backyard, you will find yourself immersed in tranquility.',
+        description: 'Our fully-restored 1964 built A-Frame cabin is the perfect getaway from the everyday. Nestled up in the western Catskill Mountains, on 1/4 acre, with lake views from the main, and third floor, as well as a forest & stream in our backyard.',
         price: 333
       },
       {
@@ -128,7 +128,7 @@ module.exports = {
         lat: 75.21,
         lng: 89.51,
         name: 'Chalet in the Clouds',
-        description: 'Relax & Rejuvenate w/ panoramic views of White Mountains from any of the 4 decks of Kailaśa Chalet! Perched on top of a mountain overlooking Mt Chocorua & Silver Lake w/ majestic views of Mt Washington Valley. So easy to get lost in the beauty of Kailaśa!',
+        description: 'Relax & Rejuvenate w/ panoramic views of White Mountains from any of the 4 decks of Kailaśa Chalet! Perched on top of a mountain overlooking Mt Chocorua w/ majestic views of Mt Washington Valley. So easy to get lost in the beauty of Kailaśa!',
         price: 501
       },
       {
@@ -140,7 +140,7 @@ module.exports = {
         lat: 31.62,
         lng: 90.31,
         name: 'Paradise in York',
-        description: 'This vast 6 bedroom property offers you everything you need for your dream vacation: Superb 180 degree ocean view, 3 terrasses, grill, heated pool, hot tub, pool and air hockey tables, fire pit, interior fireplace, fenced area for dogs, 9 tvs, 2 sets of dishwashers, 2 sets of washer/dryer, Keurig machine on every floor, main floor adapted for wheelchairs, etc.',
+        description: 'This vast 6 bedroom property offers you everything you need for your dream vacation: Superb 180 degree ocean view, 3 terrasses, grill, heated pool, hot tub, pool and air hockey tables, fire pit, interior fireplace, fenced area for dogs.',
         price: 2080
       },
       {
@@ -164,7 +164,7 @@ module.exports = {
         lat: 120.21,
         lng: 78.41,
         name: 'Mediterranean Mansion by the Sea',
-        description: 'Location, location, location!!  This 6500 SF luxury Mediterranean-style beach mansion is located in the heart of the prestigious "A-zone" of Brigantine and is literally a few steps from the pristine Brigantine beach.  Located on a double lot just 3 homes from the ocean, this huge mansion boasts direct, unobstructed ocean views.',
+        description: 'Location, location, location!!  This 6500 SF luxury Mediterranean-style beach mansion is located in the heart of the prestigious "A-zone" of Brigantine and is literally a few steps from the pristine Brigantine beach.',
         price: 898
       },
       {
@@ -188,7 +188,7 @@ module.exports = {
         lat: 75.41,
         lng: 42.01,
         name: 'The Majestic Mountain Retreat',
-        description: 'Unplug and recharge at The Majestic Mountain Retreat, as seen on Cash Pad on CNBC! Also known as the Walker Getaway, it is a wonderful place to relax and enjoy epic views from the patio. With no neighbors in sight in a quiet serene setting situated at 6500 elev.',
+        description: 'Unplug and recharge at The Majestic Mountain Retreat, as seen on Cash Pad on CNBC! Also known as the Walker Getaway, it is a wonderful place to relax and enjoy epic views from the patio.',
         price: 195
       },
       {
@@ -212,7 +212,7 @@ module.exports = {
         lat: 42.41,
         lng: 91.81,
         name: 'Hidden Harbor',
-        description: 'This oasis is tucked away in the trees on picturesque Lake Norman. The open-concept interior features ample space for the whole gang to spread out. A screened-in deck is the perfect place to savor an al fresco meal with a fresh breeze and the hum of nature. Vintage lights glow in the twilight as you soak in the hot tub. A games room keeps the fun rolling. Take the kayaks for a peaceful paddle.',
+        description: 'This oasis is tucked away in the trees on Lake Norman. The open-concept interior features ample space for the whole gang to spread out. A screened-in deck is the perfect place to savor an al fresco meal with a fresh breeze and the hum of nature.',
         price: 1261
       },
       {
@@ -224,7 +224,7 @@ module.exports = {
         lat: 170.11,
         lng: 36.31,
         name: 'Noku Beach House',
-        description: 'A 30-foot infinity pool reaches toward the sea at this wood-clad villa on Seminyak Beach. A walled garden and attentive staff look onto the scene, with interiors by Alex Zabotto-Bentley adding potted plants, maritime sculptures, and designer furnishings. Order drinks at the wet bar, soak up views from the balcony, and splurge on a session in the private spa. Gado Gado Restaurant is steps away.',
+        description: 'A 30-foot pool reaches toward the sea at this wood-clad villa on Seminyak Beach. A walled garden and attentive staff look onto the scene, with interiors by Alex Zabotto-Bentley adding potted plants, maritime sculptures, and designer furnishings.',
         price: 4200
       },
     ], {});
