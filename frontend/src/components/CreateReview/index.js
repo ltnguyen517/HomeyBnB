@@ -68,7 +68,7 @@ const ReviewForm = () => {
                         type="text"
                         className="data"
                         value={review}
-                        placeholder='Reviews must be at least 10 characters long'
+                        placeholder=' Reviews must be at least 10 characters long'
                         onChange={(e) => setReview(e.target.value)}
                         required
                     >
@@ -77,7 +77,7 @@ const ReviewForm = () => {
                         type="number"
                         className="data2"
                         value={stars}
-                        placeholder='  Stars'
+                        placeholder=' Stars'
                         min={1}
                         onChange={(e) => setStars(e.target.value)}
                         required
