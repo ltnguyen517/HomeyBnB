@@ -98,7 +98,7 @@ User.init(
         allowNull: false,
         unique: true,
         validate: {
-          len: [3, 255],
+          len: [3, 256],
           isEmail: true
         }
       },
