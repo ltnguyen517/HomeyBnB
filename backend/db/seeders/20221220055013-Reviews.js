@@ -32,13 +32,13 @@ module.exports = {
       {
         spotId: 6,
         userId: 4,
-        review: 'We had an absolutely wonderful time at this gem atop the mountain! The place is as gorgeous as the pictures, but no picture can do justice for the stunning view. This was a weekend my friends and I were able to relax and reconnect, and we’re so grateful to have been provided such a lovely place to do so. Absolutely planning on staying again!',
+        review: 'We had an absolutely wonderful time at this gem atop the mountain! The place is as gorgeous as the pictures, but no picture can do justice for the stunning view. This was a weekend my friends and I were able to relax and reconnect!',
         stars: 4
       },
       {
         spotId: 18,
         userId: 3,
-        review: 'Beautiful home with all the amenities. We felt at home, at peace, and very well relaxed in the home with breathtaking views. Highly recommend for those wanting to decompress with views to boot. Discussions taking place about our next visit!',
+        review: 'Beautiful home with all the amenities. We felt at home, at peace, and very well relaxed in the home with breathtaking views. Highly recommend for those wanting to decompress with views to boot.',
         stars: 4
       }
     ], {});
