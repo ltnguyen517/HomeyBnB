@@ -10,12 +10,13 @@ const SingleSpotDetails = () => {
     const history = useHistory();
     const dispatch = useDispatch();
     const { spotId } = useParams();
-    const singleSpot = useSelector((state) => state.spots.singleSpot);
+
+    const spot = useSelector((state) => state.spots.singleSpot);
     const currentUser = useSelector((state) => state.session.user);
-    const [ validationErrors, setValidationErrors ] = useState([]);
     const reviewsObj = useSelector((state) => state.reviews.spotReviews);
     const reviews = Object.values(reviewsObj);
-    const imageOfSpot = singleSpot.SpotImages;
+
+    let imageOfSpot = spot.SpotImages;
 
     useEffect(() => {
         dispatch(getSpot(spotId));
@@ -24,26 +25,27 @@ const SingleSpotDetails = () => {
 
     const errors = [];
 
-    const editButton = (e) => {
+    const handleEditButton = (e) => {
         e.preventDefault();
-        if(!currentUser && currentUser.id !== singleSpot.ownerId){
-            errors.push("Must be logged in and be the owner to edit this spot");
-            setValidationErrors(errors);
+        history.push(`/spots/${spot.id}/edit`);
+    };
+
+    const handleDeleteButton = (e) => {
+        e.preventDefault();
+        dispatch(deleteASpot(spotId));
+        history.push("/");
+    };
+
+    const avgRating = () => {
+        let rating = 0;
+
+        if (spot.avgStarRating === null) {
+          return "New";
         } else {
-            dispatch(editASpot(spotId));
-            history.push(`/spots/${singleSpot.id}/edit`)
+          rating += spot.avgStarRating;
+          return parseFloat(rating).toFixed(2);
         }
     };
-    const deleteButton = (e) => {
-        e.preventDefault();
-        if(!currentUser && currentUser.id !== singleSpot.ownerId){
-            errors.push("Must be logged in and be the owner to delete this spot");
-            setValidationErrors(errors);
-        } else {
-            dispatch(deleteASpot(spotId));
-            history.push("/")
-        }
-    }
 
     if(!imageOfSpot) return null;
     if(!reviews) return null;
@@ -52,23 +54,27 @@ const SingleSpotDetails = () => {
         <div className="single-spot-page">
             <div className="spot-top-info-container">
                 <div className="spot-name-container">
-                    <h1 className="place-name">{singleSpot.name}</h1>
-                    <div className="delete-edit-button-area">
-                        <button className="button" onClick={editButton}> Edit your Spot</button>
-                        <button className="button2" onClick={deleteButton}>Delete your Spot</button>
-                    </div>
+                    <h1 className="place-name">{spot.name}</h1>
+                    {currentUser && currentUser.id === spot.ownerId && (
+                        <div className="delete-edit-button-area">
+                            <button className="button" onClick={handleEditButton}>Edit your Spot</button>
+                            <button className="button2" onClick={handleDeleteButton}>Delete your Spot</button>
+                        </div>
+                    )}
                 </div>
                 <div className="spot-info-top-beneath">
                     <div className="spot-data">
                         <div className="info-star-rating">
                             <i className="fa-solid fa-star"></i>
-                            {singleSpot.avgRating}
+                            &nbsp;
+                            {/* {spot.avgRating ? Number(spot.avgRating).toFixed(2) : 'New'} */}
+                            {avgRating()}
                         </div>
                         <div className="little-dot">
                             <i className="fas fa-circle"></i>
                         </div>
                         <div className="number-reviews">
-                            {singleSpot.numReviews + " review(s)"}
+                            {spot.numReviews + " review(s)"}
                         </div>
                         <div className="little-dot">
                             <i className="fas fa-circle"></i>
@@ -81,23 +87,23 @@ const SingleSpotDetails = () => {
                             <i className="fas fa-circle"></i>
                         </div>
                         <div className="location">
-                            {singleSpot.city}, {singleSpot.state}, {singleSpot.country}
+                            {spot.city}, {spot.state}, {spot.country}
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="images-container">
-                {imageOfSpot.map((spotImage) => (
-                    <div key={spotImage.id}>
-                        <img className="the-spot-image" src={spotImage.previewImage || "https://a0.muscache.com/im/pictures/323b2430-a7fa-44d7-ba7a-6776d8e682df.jpg?im_w=1440"} alt='Spot Img'></img>
-                    </div>
-                ))}
+                <div className="images-container">
+                    {imageOfSpot.map((image) => (
+                        <div key={image.id}>
+                            <img className="the-spot-image" src={image.url || "https://a0.muscache.com/im/pictures/323b2430-a7fa-44d7-ba7a-6776d8e682df.jpg?im_w=1440"} alt='Spot Img'></img>
+                        </div>
+                    ))}
+                </div>
             </div>
             <div className="below-images-info">
                 <div className="stay-hosted-by">
-                    <h2 className="stay-hosted-by-text">Entire home hosted by {singleSpot.Owner?.firstName}</h2>
+                    <h2 className="stay-hosted-by-text">Entire home hosted by {spot.Owner?.firstName}</h2>
                     <div className="nightly-price">
-                        <h2 className="price">${singleSpot.price}</h2>
+                        <h2 className="price">${spot.price}</h2>
                         <div className="night-text">night</div>
                     </div>
                 </div>
@@ -112,36 +118,35 @@ const SingleSpotDetails = () => {
                 </div>
                 <div className="three-pros">
                     <div className="pros-icons">
-                        <div><i className="fa-solid fa-house-laptop"></i></div>
+                        <div><i className="fa-solid fa-medal"></i></div>
                         <div><i className="fa-solid fa-door-open"></i></div>
-                        <div><i className="fa-regular fa-calendar"></i></div>
+                        <div><i className="fa-solid fa-house-laptop"></i></div>
                     </div>
                     <div className="pros-short-descriptions">
-                        <h3>Great for remote work</h3>
-                        <div className="details">Fast wifi at 285 Mbps, plus a dedicated workspace in a private room.</div>
+                        <h4>{spot.Owner.firstName} is a Superhost</h4>
+                        <div className="details">Superhosts are      experienced, highly rated hosts who are committed to providing great stays for guests.
+                        </div>
                         <div className="check-in">
-                            <h3>Self check-in</h3>
+                            <h4>Self check-in</h4>
                             <div className="details">Check yourself in with the lockbox.</div>
                         </div>
-                        <div className="superhost">
-                            <h3>{singleSpot.Owner.firstName} is a Superhost</h3>
-                            <div className="details">Superhosts are experienced, highly rated hosts who are committed to providing great stays for guests.
-                            </div>
+                        <div className="remoteworkdetails">
+                            <h4>Great for remote work</h4>
+                            <div className="details">Fast wifi at 285 Mbps, plus a dedicated workspace in a private room.</div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="aircover">
-                <h2 style={{ color: '#ff375c', fontSize: '32px', marginLeft: '-20px' }}>air<span style={{ color: '#222' }}>cover</span></h2>
-                <p className="aircover-description">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
-            </div>
-            <div className="about-box">
-                <div>{singleSpot.description}</div>
-            </div>
-            <div className="reviews-area">
-                <ReviewsSection spot={singleSpot} />
+                <div className="spot-description-area">
+                    <h2 style={{ color: '#ff375c', fontSize: '32px'}}>air<span style={{ color: '#222' }}>cover</span></h2>
+                    <p className="aircover-description">Every booking includes free protection from Host cancellations, listing inaccuracies, and other issues like trouble checking in.</p>
+                    <h2 className="about-box">About this Spot</h2>
+                    <div className="spot-descriptionbody">{spot.description}</div>
+                </div>
+                <div className="reviews-area">
+                    <ReviewsSection spot={spot} />
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 export default SingleSpotDetails;
