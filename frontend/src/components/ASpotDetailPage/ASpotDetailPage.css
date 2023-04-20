@@ -19,7 +19,7 @@
 }
 .place-name {
     font-size: 27px;
-    font-weight: 399;
+    font-weight: 350;
     margin-top: 29px;
 }
 .delete-edit-button-area {
@@ -27,9 +27,9 @@
     display: flex;
     justify-content: space-between;
 }
-.button {
+/* .button {
     color: white;
-    height: 26px;
+    height: 28px;
     width: 101px;
     margin-left: 6px;
     cursor: pointer;
@@ -45,16 +45,17 @@
     rgb(189, 30, 89) 75%,
     rgb(189, 30, 89) 100%
   );
-}
+} */
 .button2 {
     color: white;
-    height: 26px;
-    width: 115px;
+    height: 28px;
+    width: 110px;
     margin-left: 4px;
     cursor: pointer;
-    border-radius: 11px;
+    border-radius: 13px;
     border-width: 0.3px;
     border-color: rgba(128, 128, 128, 0);
+    font-size: 14.5px;
     background-image: radial-gradient(
     circle at center center,
     rgb(255, 56, 92) 0%,
@@ -75,14 +76,14 @@
     display: flex;
     margin-bottom: 29px;
     justify-content: flex-start;
-    font-size: 15px;
+    font-size: 13.5px;
 }
 .info-star-rating {
-    font-weight: 599;
+    font-weight: 400;
     margin-right: 11px;
 }
 .little-dot {
-    font-size: 2px;
+    font-size: 2.5px;
     display: flex;
     align-items: center;
     margin-right: 10.5px;
@@ -106,8 +107,7 @@
     width: 100%;
 }
 .the-spot-image {
-    width: 59%;
-    margin-left: 300px;
+    width: 100%;
     border-radius: 1rem;
     object-fit: cover;
 }
@@ -122,20 +122,25 @@
     box-sizing: border-box;
     margin-top: 28px;
 }
+.stay-hosted-by-text{
+    font-weight: 350;
+}
 .nightly-price {
     display: flex;
     align-items: center;
 }
 .price {
     margin-right: 10.5px;
+    font-weight: 550;
 }
 .night-text {
-    font-size: 18.5px;
+    font-size: 17px;
+    font-weight: 300;
 }
 .amount-info {
     display: flex;
     margin-bottom: 21px;
-    font-size: 15.5px;
+    font-size: 15px;
 }
 .amount-data {
     margin-right: 10.5px;
@@ -145,6 +150,8 @@
     width: 100%;
     display: flex;
     flex-direction: row;
+    margin-bottom: 25px;
+
 }
 .pros-icons {
     display: flex;
@@ -159,23 +166,22 @@
     font-size: 10.5pt;
     color: grey;
 }
-.aircover {
-    border-bottom: 0.06px solid rgba(128, 128, 128, 0.253);
-    margin-right: 45px;
-    margin-left: 85px;
-    padding: 10px 0px 40px 0px;
-    color: #3c3c3c;
-    font-family: Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+.spot-description-area{
+    border-top: 0.05px solid rgba(128, 128, 128, 0.253);
+    margin-bottom: 25px;
+    height: auto;
+}
+.aircover-description{
+    font-size: 15px;
 }
 .about-box {
-    /* border-top: 0.05px solid rgba(128, 128, 128, 0.253); */
-    margin-bottom: 39px;
-    margin-top: 39px;
-    margin-right: 515px;
     height: auto;
-    font-size: 16px;
+    font-size: 22px;
+    font-weight: 450;
 }
-
+.spot-descriptionbody{
+    font-size: 15px;
+}
 .reviews-area {
     display: flex;
     box-sizing: border-box;
