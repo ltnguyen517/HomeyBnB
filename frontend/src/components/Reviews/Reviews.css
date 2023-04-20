@@ -1,14 +1,13 @@
 .all-reviews-container {
     margin-top: 29px;
-    margin-left: 300.5px;
     width: 100%;
-    margin-bottom: 29px;
+    margin-bottom: 65px;
 }
 .review-box-data {
     display: flex;
     justify-content: flex-start;
     margin-bottom: 21px;
-    font-size: 20px;
+    font-size: 18.5px;
     box-sizing: border-box;
     width: 100%;
     font-weight: bold;
@@ -18,21 +17,26 @@
 }
 .review-star {
     margin-right: 9px;
+    font-weight: 400;
 }
 .little-dot {
     margin-right: 9px;
 }
 .number-reviews2 {
     margin-right: 9px;
+    font-weight: 400;
 }
 .create-review {
     color: white;
-    height: 26px;
-    width: 101px;
+    margin-left: 40px;
+    margin-top: -20px;
+    height: 32px;
+    width: 128px;
     padding: 0;
     cursor: pointer;
-    border-radius: 10.5px;
+    border-radius: 13px;
     border-width: 0.3px;
+    font-size: 16px;
     border-color: rgba(128, 128, 128, 0);
     background-image: radial-gradient(
       circle at center center,
@@ -47,7 +51,7 @@
 .review-container {
     display: flex;
     flex-direction: column;
-    width: 51%;
+    width: 100%;
 }
 .person-delete {
     display: flex;
@@ -62,11 +66,13 @@
 }
 .delete-button {
     color: white;
-    height: 26px;
-    width: 101px;
+    height: 28px;
+    width: 130px;
+    margin-right: 250px;
+    font-size: 15.5px;
     padding: 0;
     cursor: pointer;
-    border-radius: 11px;
+    border-radius: 13px;
     border-width: 0.25px;
     border-color: rgba(128, 128, 128, 0);
     background-image: radial-gradient(
