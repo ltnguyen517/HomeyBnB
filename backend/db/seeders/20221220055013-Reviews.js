@@ -66,30 +66,30 @@ const reviewsData = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     for(let reviewIndex = 0; reviewIndex<reviewsData.length; reviewIndex++) {
-      let reviewsData = reviewsData[reviewIndex]
-      let spot = await Spot.findOne({where:{name:reviewsData.username}})
-      let user = await User.findOne({where:{name:reviewsData.username}})
+      let reviewData = reviewsData[reviewIndex]
+      let spot = await Spot.findOne({where:{name:reviewData.name}})
+      let user = await User.findOne({where:{username:reviewData.username}})
 
       if(spot) {
-        delete reviewsData.name
+        delete reviewData.name
         let spotId = spot.id
         let userId = user.id
-        await Review.create({...reviewsData, spotId, userId})
+        await Review.create({...reviewData, spotId, userId})
       }
     }
   },
 
   async down (queryInterface, Sequelize) {
     for(let reviewIndex = 0; reviewIndex<reviewsData.length; reviewIndex++) {
-      let reviewsData = reviewsData[reviewIndex]
-      let spot = await Spot.findOne({where:{name:reviewsData.username}})
-      let user = await User.findOne({where:{name:reviewsData.username}})
+      let reviewData = reviewsData[reviewIndex]
+      let spot = await Spot.findOne({where:{name:reviewData.name}})
+      let user = await User.findOne({where:{username:reviewData.username}})
 
       if(spot) {
-        delete reviewsData.name
+        delete reviewData.name
         let spotId = spot.id
         let userId = user.id
-        await Review.destroy({where:{...reviewsData, spotId, userId}})
+        await Review.destroy({where:{...reviewData, spotId, userId}})
       }
     }
 
