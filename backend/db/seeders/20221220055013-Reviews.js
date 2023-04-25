@@ -72,6 +72,7 @@ module.exports = {
 
       if(spot) {
         delete reviewData.name
+        delete reviewData.username
         let spotId = spot.id
         let userId = user.id
         await Review.create({...reviewData, spotId, userId})
