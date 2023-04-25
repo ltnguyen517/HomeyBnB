@@ -27,7 +27,7 @@ const HomeSpotsPage = () => {
                     <div className="placeslayout">
                         <div className="eachspot-container">
                             <Link className="place-img" to={`/spots/${spot.id}`}>
-                                <img className="spot-img" src={spot.previewImage} onError={handlePreviewImg} alt='Home'></img>
+                                <img className="spot-img" src={spot.previewImage || ""} onError={handlePreviewImg} alt='Home'></img>
                                 <div className="vertexofcard-container">
                                     <div className="city-info">{spot.city + ", " + spot.state}</div>
                                     <div>
