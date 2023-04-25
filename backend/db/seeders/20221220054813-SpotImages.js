@@ -143,7 +143,7 @@ module.exports = {
       },
       {
         spotId: 2,
-        url: 'https://photos.zillowstatic.com/fp/991efe571b501b31dd1b9b40a303e995-uncropped_scaled_within_1536_1152.webp',
+        url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-836217087544940228/original/a531953d-8a74-4100-85ad-445ee2877e8d.jpeg?im_w=1200',
         preview: true
       },
       {
