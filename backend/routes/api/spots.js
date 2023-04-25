@@ -112,7 +112,6 @@ router.get('/', async (req, res) => {
             delete spot.SpotImages;
         })
     });
-    console.log("$$$$$$$", spotArr)
 
     return res.json({
         "Spots": spotArr,
