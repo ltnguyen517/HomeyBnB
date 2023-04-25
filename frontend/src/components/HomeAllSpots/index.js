@@ -21,7 +21,7 @@ const HomeSpotsPage = () => {
                     <div className="placeslayout">
                         <div className="eachspot-container">
                             <Link className="place-img" to={`/spots/${spot.id}`}>
-                                <img className="spot-img" src={spot.previewImage || "https://photos.zillowstatic.com/fp/991efe571b501b31dd1b9b40a303e995-uncropped_scaled_within_1536_1152.webp"} alt='Home'></img>
+                                <img className="spot-img" src={spot.previewImage} alt='Home'></img>
                                 <div className="vertexofcard-container">
                                     <div className="city-info">{spot.city + ", " + spot.state}</div>
                                     <div>
